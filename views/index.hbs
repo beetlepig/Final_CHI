@@ -1,2 +1,17 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<form method="post" action="/consult">
+    <input placeholder="pagina a consultar" type="number" max="30" name="pagina">
+    <input placeholder="pelicula a consultar" type="number" max="100" name="pelicula">
+    <button type="submit">Consultar</button>
+
+</form>
+
+<form method="post" action="/save">
+
+    <button type="submit">save</button>
+
+</form>
+
+<script src="/javascripts/index.js" type="text/javascript"></script>

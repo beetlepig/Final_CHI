@@ -7,7 +7,7 @@ let movieDbExtended=[];
 let llamado=false;
 let llamadoDos=false;
 let jsonsito;
-
+let dbFinal=[];
 function init(req,res,next) {
     /*
  if(!llamado) {
@@ -82,23 +82,31 @@ function savejson(req,res,next) {
 }
 
 function comprobarJson(req,res,next) {
-    for(let i=1;i<=12;i++){
-        if(i<10){
-            fs.readFile('../DB peliculas JSON/movies_0'+i+'.json', 'utf-8', function(err, data) {
+    if (!llamado){
+    for (let i = 1; i <= 12; i++) {
+        if (i < 10) {
+            fs.readFile('../DB peliculas JSON/movies_0' + i + '.json', 'utf-8', function (err, data) {
                 if (err) throw err;
 
                 jsonsito = JSON.parse(data);
-                console.log("json numero: "+" 0"+i+" "+jsonsito.length);
+                dbFinal.push(jsonsito);
+                console.log("json numero: " + " 0" + i + " " + jsonsito.length);
             });
-        }else{
-            fs.readFile('../DB peliculas JSON/movies_'+i+'.json', 'utf-8', function(err, data) {
+        } else {
+            fs.readFile('../DB peliculas JSON/movies_' + i + '.json', 'utf-8', function (err, data) {
                 if (err) throw err;
 
                 jsonsito = JSON.parse(data);
-                console.log("json numero: "+" "+i+" "+jsonsito.length);
+                dbFinal.push(jsonsito);
+                console.log("json numero: " + " " + i + " " + jsonsito.length);
             });
         }
     }
+
+    llamado=true;
+}
+
+    console.log("tamaño db total:"+ dbFinal.length);
 
     res.redirect('/');
 }

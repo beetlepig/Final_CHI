@@ -1,8 +1,12 @@
 let client = require('guidebox');
-var fs = require('fs');
+let fs = require('fs')
+let DATABASE= require('../DB peliculas JSON/DB');
 //let Guidebox = new client('afa2abc6dd945d98a3c1590deae1d12d571dfbf9', 'US');
+
+let Guidebox = new client('315488947045b31501f1277e864cd946828f17e8', 'US');
 let movieArray=[];
 //let movie = Guidebox.movies.retrieve(128834);
+//let genres = Guidebox.genres.list();
 let movieDbExtended=[];
 let llamado=false;
 let llamadoDos=false;
@@ -82,6 +86,7 @@ function savejson(req,res,next) {
 }
 
 function comprobarJson(req,res,next) {
+    /*
     if (!llamado){
     for (let i = 1; i <= 12; i++) {
         if (i < 10) {
@@ -105,8 +110,8 @@ function comprobarJson(req,res,next) {
 
     llamado=true;
 }
-
-    console.log("tamaño db total:"+ dbFinal.length);
+*/
+    console.log("tamaño db total:"+ DATABASE.getDB().length);
 
     res.redirect('/');
 }

@@ -12,4 +12,6 @@ router.post('/consult',controller.getPage);
 
 router.post('/save',controller.savejson);
 
+router.post('/comprobar',controller.comprobarJson);
+
 module.exports = router;

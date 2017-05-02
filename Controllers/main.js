@@ -1,15 +1,17 @@
 let client = require('guidebox');
 var fs = require('fs');
-let Guidebox = new client('afa2abc6dd945d98a3c1590deae1d12d571dfbf9', 'US');
+//let Guidebox = new client('afa2abc6dd945d98a3c1590deae1d12d571dfbf9', 'US');
 let movieArray=[];
-let movie = Guidebox.movies.retrieve(128834);
+//let movie = Guidebox.movies.retrieve(128834);
 let movieDbExtended=[];
 let llamado=false;
 let llamadoDos=false;
+let jsonsito;
 
 function init(req,res,next) {
+    /*
  if(!llamado) {
-     for (let i = 2; i < 4; i++) {
+     for (let i = 16; i < 18; i++) {
          let offset= i*100;
          Guidebox.movies.list({sources: 'netflix', limit: 100, offset: offset}).then(function (res) {
              movieArray.push(res);
@@ -26,7 +28,7 @@ function init(req,res,next) {
   //  console.log(movieArray[0].results[0]);
     console.log(movieArray.length);
 
-
+*/
 
 
 
@@ -36,6 +38,7 @@ function init(req,res,next) {
 }
 
 function getPage(req,res,next) {
+    /*
     console.log("tamaño primer array"+movieArray.length);
     let pagina =req.body.pagina;
     let pelicula= req.body.pelicula;
@@ -63,16 +66,41 @@ function getPage(req,res,next) {
     }
     console.log("tamaño segundo array"+movieDbExtended.length);
     console.log(movieDbExtended[pelicula].title);
-
+*/
 
     res.redirect('/');
 }
 
-function savejson() {
+function savejson(req,res,next) {
+    /*
     fs.writeFile('./movies.json', JSON.stringify(movieDbExtended), 'utf-8', function(err) {
         if (err) throw err;
         console.log('Done!')
     });
+*/
+    res.end();
+}
+
+function comprobarJson(req,res,next) {
+    for(let i=1;i<=12;i++){
+        if(i<10){
+            fs.readFile('../DB peliculas JSON/movies_0'+i+'.json', 'utf-8', function(err, data) {
+                if (err) throw err;
+
+                jsonsito = JSON.parse(data);
+                console.log("json numero: "+" 0"+i+" "+jsonsito.length);
+            });
+        }else{
+            fs.readFile('../DB peliculas JSON/movies_'+i+'.json', 'utf-8', function(err, data) {
+                if (err) throw err;
+
+                jsonsito = JSON.parse(data);
+                console.log("json numero: "+" "+i+" "+jsonsito.length);
+            });
+        }
+    }
+
+    res.redirect('/');
 }
 
 
@@ -80,5 +108,6 @@ function savejson() {
 module.exports = {
     init,
     getPage,
-    savejson
+    savejson,
+    comprobarJson
 };

@@ -3,9 +3,9 @@ let router = express.Router();
 
 let genero;
 let director;
-let duracion;
+let duracion=[];
 let rating;
-let anoWTF;
+let anoWTF=[];
 
 
 
@@ -19,12 +19,13 @@ router.post('/variables',function (req,res,next) {
     duracion.push((req.body.duracionUno).split("-")[0]);
     duracion.push((req.body.duracionUno).split("-")[1]);
     rating= req.body.ratingUno;
-    anoWTF= req.body.anoUno;
-    console.log(genero);
-    console.log(director);
-    console.log(duracion);
-    console.log(rating);
-    console.log(anoWTF);
+    anoWTF.push((req.body.anoUno).split("-")[0]);
+    anoWTF.push((req.body.anoUno).split("-")[1]);
+    console.log('genero: '+genero);
+    console.log('director: '+director);
+    console.log('duracion desde: '+duracion[0]+' hasta: '+duracion[1]);
+    console.log('rating: '+rating);
+    console.log('año desde: '+anoWTF[0]+' hasta: '+anoWTF[1]);
     res.redirect('/test/');
 });
 

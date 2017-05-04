@@ -8,6 +8,7 @@ function unirJSONES() {
         if (i < 10) {
             jsonsito = JSON.parse(fs.readFileSync('../DB peliculas JSON/movies_0' + i + '.json', 'utf-8'));
             dbFinal.push(jsonsito);
+
             console.log("json numero: " + " 0" + i + " " + jsonsito.length);
         } else {
             jsonsito = JSON.parse(fs.readFileSync('../DB peliculas JSON/movies_' + i + '.json', 'utf-8'));
@@ -20,7 +21,7 @@ function unirJSONES() {
 
 
      crearUnJSON();
-     console.log("numero peliculas totales: "+dbFinalCompleta.length);
+     console.log("numero peliculas totales: "+getDbCompleta().length);
 
 }
 
@@ -30,6 +31,7 @@ function crearUnJSON() {
             dbFinalCompleta.push(j);
         }
     }
+
 }
 
 
@@ -39,6 +41,7 @@ function getDB() {
 }
 
 function getDbCompleta() {
+
     return dbFinalCompleta;
 }
 

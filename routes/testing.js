@@ -72,7 +72,13 @@ router.post('/variables',function (req,res,next) {
     for (let i of listaSugerencia) {
             // console.log(j.genres[0].title);
             if(i.rating === rating) {
-                i["calSugerencia"] += 0.2;
+                if (i.hasOwnProperty('calSugerencia')){
+                    i.calSugerencia += 0.2;
+                }else {
+                    i["calSugerencia"]= 0.2;
+                    contador++;
+                }
+
             }
 
     }

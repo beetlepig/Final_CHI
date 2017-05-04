@@ -37,7 +37,12 @@ function sugerir(req,res,next) {
 
 //AGREGAR VALOR SUGERENCIA A LAS PELICULAS
     for (let i of  listaSugerencia){
+        if(i.hasOwnProperty('calSugerencia')){
+            i.calSugerencia=0;
+        } else {
             i["calSugerencia"]=0;
+        }
+
     }
 
 //FOR PARA ENCONTRAR GENEROS Y ASIGNAR LA CALIFICACION
@@ -96,14 +101,22 @@ function sugerir(req,res,next) {
         }
     }
 
+    //FOR PARA ENCONTRAR Año Y ASIGNAR LA DURACION
+    for (let i of listaSugerencia) {
+        if ((i.duration > duracion[0]*60) && (i.duration < duracion[1]*60)) {
+            contador++;
+            i.calSugerencia += 0.2;
+        }
+    }
+
 
 
 //un metodo para sacar los favoritos
     console.log("--------------------------FAVORITOS------------------------");
     for (let i of listaSugerencia) {
-            if (i.calSugerencia >= 0.6) {
+            if (i.calSugerencia >= 0.8) {
                 console.log(i.title+" id: "+i.id+"-------Califiacion: "+i.calSugerencia);
-                // console.log(i);
+            //    console.log(i);
             }
     }
 

@@ -34,13 +34,8 @@ function sugerir(req,res,next) {
     console.log('duracion desde: '+duracion[0]+' hasta: '+duracion[1]);
     console.log('rating: '+rating);
     console.log('año desde: '+anoWTF[0]+' hasta: '+anoWTF[1]);
-    /*
-     for(let i=0; i<pelis.getDB().length; i++){
-     let sesion= pelis[i];
 
-     }
-     */
-
+//AGREGAR VALOR SUGERENCIA A LAS PELICULAS
     for (let i of  listaSugerencia){
             i["calSugerencia"]=0;
     }

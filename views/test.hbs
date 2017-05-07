@@ -23,7 +23,14 @@
         <option value="War">War</option>
         <option value="Western">Western</option>
     </select>
-    <input type="text" placeholder="Director" name="directorUno">
+    <select name="directorUno">
+    {{#each name}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+
+    </select>
+
+
     <select name="duracionUno">
         <option value="30-70">30 a 70 min</option>
         <option value="70-90">70 a 90 min</option>

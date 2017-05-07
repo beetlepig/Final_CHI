@@ -1,5 +1,6 @@
 let dbFinal=[];
 let dbFinalCompleta=[];
+let directores=[];
 let fs = require('fs');
 
 function unirJSONES() {
@@ -21,6 +22,7 @@ function unirJSONES() {
 
 
      crearUnJSON();
+     pushDirectores();
      console.log("numero peliculas totales: "+getDbCompleta().length);
 
 }
@@ -34,6 +36,37 @@ function crearUnJSON() {
 
 }
 
+function pushDirectores() {
+    for(let i of dbFinalCompleta){
+        try {
+            directores.push(i.directors[0].name);
+
+        } catch (error){
+            if (error.name === 'TypeError')
+            {
+
+            } else {
+                console.log(error);
+            }
+        }
+    }
+
+    console.log("directores con duplicados: "+directores.length);
+
+    directores= uniq(directores);
+    directores.sort();
+    console.log("filtrados: "+directores.length);
+
+
+}
+
+function getDirectores() {
+    return directores;
+}
+
+function uniq(a) {
+    return Array.from(new Set(a));
+}
 
 
 function getDB() {
@@ -51,5 +84,6 @@ function getDbCompleta() {
 module.exports = {
     unirJSONES,
     getDB,
-    getDbCompleta
+    getDbCompleta,
+    getDirectores
 };

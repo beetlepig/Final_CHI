@@ -1,6 +1,4 @@
-/**
- * Created by karlos on 04/05/2017.
- */
+
 const pelis= require('../DB peliculas JSON/DB');
 let genero;
 let director;
@@ -77,7 +75,12 @@ function sugerir(req,res,next) {
 
 
         }catch (error){
-            //  console.log(error);
+            if (error.name === 'TypeError')
+            {
+
+            } else {
+                console.log(error);
+            }
         }
     }
 
@@ -109,14 +112,32 @@ function sugerir(req,res,next) {
         }
     }
 
+    //FOR PARA ENCONTRAR DIRECTOR Y ASIGNAR El DIRECTOR
+    for (let i of listaSugerencia) {
+        try {
+            if (i.directors[0].name === director) {
+                contador++;
+                i.calSugerencia += 0.2;
+                console.log(i);
+            }
+        } catch (error){
+            if (error.name === 'TypeError')
+            {
+
+            } else {
+                console.log(error);
+            }
+        }
+    }
+
 
 
 //un metodo para sacar los favoritos
     console.log("--------------------------FAVORITOS------------------------");
     for (let i of listaSugerencia) {
-            if (i.calSugerencia >= 0.8) {
+            if (i.calSugerencia >= 1) {
                 console.log(i.title+" id: "+i.id+"-------Califiacion: "+i.calSugerencia);
-            //    console.log(i);
+                console.log(i);
             }
     }
 

@@ -82,15 +82,41 @@ function sugerir(req,res,next) {
 
   let listaUno=  listaUsuUno();
   let listaDos=  listaUsuDos();
-  listaDos.sort();
-  listaUno.sort();
+
 
 
     let intercepcion= interceptar(listaUno,listaDos);
     console.log("numero preselecionados: "+intercepcion.length);
 
+    console.log(cincoFavoritos(intercepcion)[0]);
+
     res.redirect('/test/');
 
+}
+
+
+function cincoFavoritos(preselecionados) {
+    let preselecion= preselecionados;
+
+    preselecion.sort(function (a,b) {
+        let calA = a.calSugerenciaFinal;
+        let calB = b.calSugerenciaFinal;
+
+        if (calA < calB) {
+            return 1;
+        }
+        if (calA > calB) {
+            return -1;
+        }
+        return 0;
+    });
+
+    let cinco=[];
+    for (let i=0; i<5; i++){
+        cinco.push(preselecion[i]);
+    }
+
+    return cinco;
 }
 
 

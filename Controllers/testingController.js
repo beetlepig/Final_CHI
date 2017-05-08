@@ -87,7 +87,7 @@ function sugerir(req,res,next) {
 
 
     let intercepcion= interceptar(listaUno,listaDos);
-    console.log(intercepcion.length);
+    console.log("numero preselecionados: "+intercepcion.length);
 
     res.redirect('/test/');
 
@@ -263,6 +263,7 @@ let listaFinal=[];
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
 function listaUsuDos() {
     let listaSugerencia= pelis.getDbCompleta();
 
@@ -280,90 +281,114 @@ function listaUsuDos() {
 
 
 //FOR PARA ENCONTRAR GENEROS Y ASIGNAR LA CALIFICACION
-    for (let i of listaSugerencia) {
-        try{
-            // console.log(j.genres[0].title);
-            if(i.genres[0].title === generoDos){
+    for (let j of usuarioDos.genero){
 
-                i.calSugerencia+=0.2;
-                contador++;
+        for (let i of listaSugerencia) {
+            try{
+                // console.log(j.genres[0].title);
+                if(i.genres[0].title === j){
 
-
-
-            } else if (i.genres[1].title === generoDos){
-
-                contador++;
-                i.calSugerencia+=0.2;
-
-            } else if (i.genres[2].title === generoDos){
+                    i.calSugerencia+=0.2;
+                    contador++;
 
 
-                contador++;
-                i.calSugerencia+=0.2;
 
-            } else if (i.genres[3].title === generoDos) {
+                } else if (i.genres[1].title === j){
 
+                    contador++;
+                    i.calSugerencia+=0.2;
 
-                i.calSugerencia+=0.2;
-                contador++;
-
-            }
+                } else if (i.genres[2].title === j){
 
 
-        }catch (error){
-            if (error.name === 'TypeError')
-            {
+                    contador++;
+                    i.calSugerencia+=0.2;
 
-            } else {
-                console.log(error);
+                } else if (i.genres[3].title === j) {
+
+
+                    i.calSugerencia+=0.2;
+                    contador++;
+
+                }
+
+
+            }catch (error){
+                if (error.name === 'TypeError')
+                {
+
+                } else {
+                    console.log(error);
+                }
             }
         }
+
     }
+
 
 //FOR PARA ENCONTRAR RATING Y ASIGNAR LA CALIFICACION
-    for (let i of listaSugerencia) {
-        // console.log(j.genres[0].title);
-        if(i.rating === ratingDos) {
+    for (let j of usuarioDos.rating){
 
-            i.calSugerencia += 0.2;
+        for (let i of listaSugerencia) {
+            // console.log(j.genres[0].title);
+            if(i.rating === j) {
 
+                i.calSugerencia += 0.2;
+
+
+            }
 
         }
 
     }
 
-    //FOR PARA ENCONTRAR Año Y ASIGNAR LA CALIFICACIOn
-    for (let i of listaSugerencia) {
-        if ((i.release_year > anoWTFDos[0]) && (i.release_year < anoWTFDos[1])) {
-            contador++;
-            i.calSugerencia += 0.2;
-        }
-    }
 
-    //FOR PARA ENCONTRAR Año Y ASIGNAR LA DURACION
-    for (let i of listaSugerencia) {
-        if ((i.duration > duracionDos[0]*60) && (i.duration < duracionDos[1]*60)) {
-            contador++;
-            i.calSugerencia += 0.2;
-        }
-    }
+    //FOR PARA ENCONTRAR Año Y ASIGNAR LA CALIFICACION
+    for (let j of usuarioDos.ano){
 
-    //FOR PARA ENCONTRAR DIRECTOR Y ASIGNAR El DIRECTOR
-    for (let i of listaSugerencia) {
-        try {
-            if (i.directors[0].name === directorDos) {
+        for (let i of listaSugerencia) {
+            if ((i.release_year > j[0]) && (i.release_year < j[1])) {
                 contador++;
                 i.calSugerencia += 0.2;
             }
-        } catch (error){
-            if (error.name === 'TypeError')
-            {
+        }
 
-            } else {
-                console.log(error);
+    }
+
+
+    //FOR PARA ENCONTRAR DURACION Y ASIGNAR LA DURACION
+    for (let j of listaSugerencia) {
+        for (let i of usuarioDos.duracion){
+
+            if ((i.duration > j[0]*60) && (i.duration < j[1]*60)) {
+                contador++;
+                i.calSugerencia += 0.2;
+            }
+
+        }
+
+    }
+
+    //FOR PARA ENCONTRAR DIRECTOR Y ASIGNAR El DIRECTOR
+    for (let j of usuarioDos.director){
+        for (let i of listaSugerencia) {
+            try {
+                if (i.directors[0].name === j) {
+                    contador++;
+                    i.calSugerencia += 0.2;
+                }
+            } catch (error){
+                if (error.name === 'TypeError')
+                {
+
+                } else {
+                    console.log(error);
+                }
             }
         }
     }
+
+
 
 
 

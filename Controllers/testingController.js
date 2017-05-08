@@ -6,32 +6,119 @@ let duracion=[];
 let rating;
 let anoWTF=[];
 
-let contador=0;
+let usuarioUno={genero: [],director: [],duracion: [],rating: [],ano: []};
+let usuarioDos={genero: [],director: [],duracion: [],rating: [],ano: []};
 
-let listaSugerencia=[];
+let generoDos;
+let directorDos;
+let duracionDos=[];
+let ratingDos;
+let anoWTFDos=[];
+
+
 
 
 function sugerir(req,res,next) {
-    genero=undefined;
-    director= undefined;
-    duracion=[];
-    rating=undefined;
-    anoWTF=[];
-    contador=0;
-    listaSugerencia= pelis.getDbCompleta();
 
-    genero= req.body.generoUno;
-    director= req.body.directorUno;
-    duracion.push((req.body.duracionUno).split("-")[0]);
-    duracion.push((req.body.duracionUno).split("-")[1]);
-    rating= req.body.ratingUno;
-    anoWTF.push((req.body.anoUno).split("-")[0]);
-    anoWTF.push((req.body.anoUno).split("-")[1]);
-    console.log('genero: '+genero);
-    console.log('director: '+director);
-    console.log('duracion desde: '+duracion[0]+' hasta: '+duracion[1]);
-    console.log('rating: '+rating);
-    console.log('año desde: '+anoWTF[0]+' hasta: '+anoWTF[1]);
+    usuarioUno.genero=req.body.usuarioUno.genero;
+    usuarioUno.director=req.body.usuarioUno.director;
+    usuarioUno.duracion=req.body.usuarioUno.duracion;
+    usuarioUno.rating=req.body.usuarioUno.rating;
+    usuarioUno.ano=req.body.usuarioUno.ano;
+
+    for (let i of usuarioUno.duracion){
+        let slip1=i.split("-")[0];
+        let slip2=i.split("-")[1];
+        let temporal=[];
+        temporal.push(slip1);
+        temporal.push(slip2);
+        usuarioUno.duracion[usuarioUno.duracion.indexOf(i)]=temporal;
+
+    }
+    for (let i of usuarioUno.ano){
+        let slip1=i.split("-")[0];
+        let slip2=i.split("-")[1];
+        let temporal=[];
+        temporal.push(slip1);
+        temporal.push(slip2);
+        usuarioUno.ano[usuarioUno.ano.indexOf(i)]=temporal;
+
+    }
+
+    console.log(usuarioUno);
+
+    usuarioDos.genero=req.body.usuarioDos.genero;
+    usuarioDos.director=req.body.usuarioDos.director;
+    usuarioDos.duracion=req.body.usuarioDos.duracion;
+    usuarioDos.rating=req.body.usuarioDos.rating;
+    usuarioDos.ano=req.body.usuarioDos.ano;
+
+    for (let i of usuarioDos.duracion){
+        let slip1=i.split("-")[0];
+        let slip2=i.split("-")[1];
+        let temporal=[];
+        temporal.push(slip1);
+        temporal.push(slip2);
+        usuarioDos.duracion[usuarioDos.duracion.indexOf(i)]=temporal;
+    }
+    for (let i of usuarioDos.ano){
+        let slip1=i.split("-")[0];
+        let slip2=i.split("-")[1];
+        let temporal=[];
+        temporal.push(slip1);
+        temporal.push(slip2);
+        usuarioDos.ano[usuarioDos.ano.indexOf(i)]=temporal;
+    }
+
+    console.log(usuarioDos);
+
+
+
+
+
+
+
+
+
+  let listaUno=  listaUsuUno();
+  let listaDos=  listaUsuDos();
+  listaDos.sort();
+  listaUno.sort();
+
+
+    let intercepcion= interceptar(listaUno,listaDos);
+    console.log(intercepcion.length);
+
+    res.redirect('/test/');
+
+}
+
+
+
+function interceptar(a,b) {
+    let result=[];
+    for (let i of a){
+        for (let j of b){
+            if(i.id === j.id){
+                let paraAnadir= i;
+
+                paraAnadir["calSugerenciaUsuDos"]= j.calSugerencia;
+                paraAnadir["calSugerenciaFinal"]=paraAnadir.calSugerencia+paraAnadir.calSugerenciaUsuDos;
+                result.push(paraAnadir);
+            }
+        }
+    }
+
+    return result;
+}
+
+
+
+
+function listaUsuUno() {
+    let listaSugerencia= pelis.getDbCompleta();
+
+    let contador=0;
 
 //AGREGAR VALOR SUGERENCIA A LAS PELICULAS
     for (let i of  listaSugerencia){
@@ -43,33 +130,182 @@ function sugerir(req,res,next) {
 
     }
 
+
+//FOR PARA ENCONTRAR GENEROS Y ASIGNAR LA CALIFICACION
+
+    for (let j of usuarioUno.genero){
+
+        for (let i of listaSugerencia) {
+            try{
+                // console.log(j.genres[0].title);
+                if(i.genres[0].title === j){
+
+                    i.calSugerencia+=0.2;
+                    contador++;
+
+
+
+                } else if (i.genres[1].title === j){
+
+                    contador++;
+                    i.calSugerencia+=0.2;
+
+                } else if (i.genres[2].title === j){
+
+
+                    contador++;
+                    i.calSugerencia+=0.2;
+
+                } else if (i.genres[3].title === j) {
+
+
+                    i.calSugerencia+=0.2;
+                    contador++;
+
+                }
+
+
+            }catch (error){
+                if (error.name === 'TypeError')
+                {
+
+                } else {
+                    console.log(error);
+                }
+            }
+        }
+
+    }
+
+
+//FOR PARA ENCONTRAR RATING Y ASIGNAR LA CALIFICACION
+    for (let j of usuarioUno.rating){
+
+        for (let i of listaSugerencia) {
+            // console.log(j.genres[0].title);
+            if(i.rating === j) {
+
+                i.calSugerencia += 0.2;
+            }
+        }
+    }
+
+
+    //FOR PARA ENCONTRAR Año Y ASIGNAR LA CALIFICACION
+    for (let j of usuarioUno.ano){
+
+        for (let i of listaSugerencia) {
+            if ((i.release_year > j[0]) && (i.release_year < j[1])) {
+                contador++;
+                i.calSugerencia += 0.2;
+            }
+        }
+
+    }
+
+
+
+    //FOR PARA ENCONTRAR DURACION Y ASIGNAR LA DURACION
+    for (let j of usuarioUno.duracion){
+
+        for (let i of listaSugerencia) {
+            if ((i.duration > j[0]*60) && (i.duration < j[1]*60)) {
+                contador++;
+                i.calSugerencia += 0.2;
+            }
+        }
+
+    }
+
+
+
+    //FOR PARA ENCONTRAR DIRECTOR Y ASIGNAR El DIRECTOR
+    for (let j of usuarioUno.director){
+
+        for (let i of listaSugerencia) {
+            try {
+                if (i.directors[0].name === j) {
+                    contador++;
+                    i.calSugerencia += 0.2;
+                }
+            } catch (error){
+                if (error.name === 'TypeError')
+                {
+
+                } else {
+                    console.log(error);
+                }
+            }
+        }
+
+    }
+
+
+
+
+
+let listaFinal=[];
+
+//un metodo para sacar los favoritos
+    console.log("--------------------------FAVORITOS------------------------");
+    for (let i of listaSugerencia) {
+        if (i.calSugerencia >= 0.4) {
+          //  console.log("uno: "+i.title+" id: "+i.id+"-------Califiacion: "+i.calSugerencia);
+            listaFinal.push(i);
+        }
+    }
+
+
+
+    console.log("contador uno: "+contador);
+    return listaFinal;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+function listaUsuDos() {
+    let listaSugerencia= pelis.getDbCompleta();
+
+    let contador=0;
+
+//AGREGAR VALOR SUGERENCIA A LAS PELICULAS
+    for (let i of  listaSugerencia){
+        if(i.hasOwnProperty('calSugerencia')){
+            i.calSugerencia=0;
+        } else {
+            i["calSugerencia"]=0;
+        }
+
+    }
+
+
 //FOR PARA ENCONTRAR GENEROS Y ASIGNAR LA CALIFICACION
     for (let i of listaSugerencia) {
         try{
             // console.log(j.genres[0].title);
-            if(i.genres[0].title === genero){
+            if(i.genres[0].title === generoDos){
 
-                    i.calSugerencia+=0.2;
-                    contador++;
-
-
-
-            } else if (i.genres[1].title === genero){
-
-                    contador++;
-                    i.calSugerencia+=0.2;
-
-            } else if (i.genres[2].title === genero){
+                i.calSugerencia+=0.2;
+                contador++;
 
 
-                    contador++;
-                    i.calSugerencia+=0.2;
 
-            } else if (i.genres[3].title === genero) {
+            } else if (i.genres[1].title === generoDos){
+
+                contador++;
+                i.calSugerencia+=0.2;
+
+            } else if (i.genres[2].title === generoDos){
 
 
-                    i.calSugerencia+=0.2;
-                    contador++;
+                contador++;
+                i.calSugerencia+=0.2;
+
+            } else if (i.genres[3].title === generoDos) {
+
+
+                i.calSugerencia+=0.2;
+                contador++;
 
             }
 
@@ -87,9 +323,9 @@ function sugerir(req,res,next) {
 //FOR PARA ENCONTRAR RATING Y ASIGNAR LA CALIFICACION
     for (let i of listaSugerencia) {
         // console.log(j.genres[0].title);
-        if(i.rating === rating) {
+        if(i.rating === ratingDos) {
 
-                i.calSugerencia += 0.2;
+            i.calSugerencia += 0.2;
 
 
         }
@@ -98,15 +334,15 @@ function sugerir(req,res,next) {
 
     //FOR PARA ENCONTRAR Año Y ASIGNAR LA CALIFICACIOn
     for (let i of listaSugerencia) {
-        if ((i.release_year > anoWTF[0]) && (i.release_year < anoWTF[1])) {
-                contador++;
-                i.calSugerencia += 0.2;
+        if ((i.release_year > anoWTFDos[0]) && (i.release_year < anoWTFDos[1])) {
+            contador++;
+            i.calSugerencia += 0.2;
         }
     }
 
     //FOR PARA ENCONTRAR Año Y ASIGNAR LA DURACION
     for (let i of listaSugerencia) {
-        if ((i.duration > duracion[0]*60) && (i.duration < duracion[1]*60)) {
+        if ((i.duration > duracionDos[0]*60) && (i.duration < duracionDos[1]*60)) {
             contador++;
             i.calSugerencia += 0.2;
         }
@@ -115,10 +351,9 @@ function sugerir(req,res,next) {
     //FOR PARA ENCONTRAR DIRECTOR Y ASIGNAR El DIRECTOR
     for (let i of listaSugerencia) {
         try {
-            if (i.directors[0].name === director) {
+            if (i.directors[0].name === directorDos) {
                 contador++;
                 i.calSugerencia += 0.2;
-                console.log(i);
             }
         } catch (error){
             if (error.name === 'TypeError')
@@ -132,19 +367,21 @@ function sugerir(req,res,next) {
 
 
 
+let listaFinal=[];
+
 //un metodo para sacar los favoritos
     console.log("--------------------------FAVORITOS------------------------");
     for (let i of listaSugerencia) {
-            if (i.calSugerencia >= 1) {
-                console.log(i.title+" id: "+i.id+"-------Califiacion: "+i.calSugerencia);
-                console.log(i);
-            }
+        if (i.calSugerencia >= 0.4) {
+          //  console.log("dos: "+i.title+" id: "+i.id+"-------Califiacion: "+i.calSugerencia);
+            listaFinal.push(i);
+        }
     }
 
 
 
-    console.log("contador: "+contador);
-    res.redirect('/test/');
+    console.log("contador Dos : "+contador);
+    return listaFinal;
 
 }
 

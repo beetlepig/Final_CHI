@@ -149,9 +149,9 @@ function listaUsuUno() {
 //AGREGAR VALOR SUGERENCIA A LAS PELICULAS
     for (let i of  listaSugerencia){
         if(i.hasOwnProperty('calSugerencia')){
-            i.calSugerencia=0;
+             listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia=0;
         } else {
-            i["calSugerencia"]=0;
+            listaSugerencia[listaSugerencia.indexOf(i)]["calSugerencia"]=0;
         }
 
     }
@@ -166,7 +166,7 @@ function listaUsuUno() {
                 // console.log(j.genres[0].title);
                 if(i.genres[0].title === j){
 
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
                     contador++;
 
 
@@ -174,18 +174,18 @@ function listaUsuUno() {
                 } else if (i.genres[1].title === j){
 
                     contador++;
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
 
                 } else if (i.genres[2].title === j){
 
 
                     contador++;
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
 
                 } else if (i.genres[3].title === j) {
 
 
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
                     contador++;
 
                 }
@@ -211,7 +211,7 @@ function listaUsuUno() {
             // console.log(j.genres[0].title);
             if(i.rating === j) {
 
-                i.calSugerencia += 0.2;
+                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
             }
         }
     }
@@ -223,7 +223,7 @@ function listaUsuUno() {
         for (let i of listaSugerencia) {
             if ((i.release_year > j[0]) && (i.release_year < j[1])) {
                 contador++;
-                i.calSugerencia += 0.2;
+                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
             }
         }
 
@@ -237,7 +237,7 @@ function listaUsuUno() {
         for (let i of listaSugerencia) {
             if ((i.duration > j[0]*60) && (i.duration < j[1]*60)) {
                 contador++;
-                i.calSugerencia += 0.2;
+                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
             }
         }
 
@@ -252,7 +252,7 @@ function listaUsuUno() {
             try {
                 if (i.directors[0].name === j) {
                     contador++;
-                    i.calSugerencia += 0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
                 }
             } catch (error){
                 if (error.name === 'TypeError')
@@ -298,9 +298,9 @@ function listaUsuDos() {
 //AGREGAR VALOR SUGERENCIA A LAS PELICULAS
     for (let i of  listaSugerencia){
         if(i.hasOwnProperty('calSugerencia')){
-            i.calSugerencia=0;
+            listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia=0;
         } else {
-            i["calSugerencia"]=0;
+            listaSugerencia[listaSugerencia.indexOf(i)]["calSugerencia"]=0;
         }
 
     }
@@ -314,7 +314,7 @@ function listaUsuDos() {
                 // console.log(j.genres[0].title);
                 if(i.genres[0].title === j){
 
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
                     contador++;
 
 
@@ -322,18 +322,18 @@ function listaUsuDos() {
                 } else if (i.genres[1].title === j){
 
                     contador++;
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
 
                 } else if (i.genres[2].title === j){
 
 
                     contador++;
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
 
                 } else if (i.genres[3].title === j) {
 
 
-                    i.calSugerencia+=0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
                     contador++;
 
                 }
@@ -359,7 +359,7 @@ function listaUsuDos() {
             // console.log(j.genres[0].title);
             if(i.rating === j) {
 
-                i.calSugerencia += 0.2;
+                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
 
 
             }
@@ -375,7 +375,7 @@ function listaUsuDos() {
         for (let i of listaSugerencia) {
             if ((i.release_year > j[0]) && (i.release_year < j[1])) {
                 contador++;
-                i.calSugerencia += 0.2;
+                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
             }
         }
 
@@ -388,7 +388,7 @@ function listaUsuDos() {
 
             if ((i.duration > j[0]*60) && (i.duration < j[1]*60)) {
                 contador++;
-                i.calSugerencia += 0.2;
+                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
             }
 
         }
@@ -401,7 +401,7 @@ function listaUsuDos() {
             try {
                 if (i.directors[0].name === j) {
                     contador++;
-                    i.calSugerencia += 0.2;
+                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
                 }
             } catch (error){
                 if (error.name === 'TypeError')

@@ -8,6 +8,15 @@ let usuarioUno={genero: [],director: [],duracion: [],rating: [],ano: []};
 let usuarioDos={genero: [],director: [],duracion: [],rating: [],ano: []};
 
 
+let arraycalUno=[];
+let arraycalDos=[];
+
+let listaUno;
+let listaDos;
+
+let intercepcion;
+
+
 
 
 
@@ -74,12 +83,32 @@ function sugerir(req,res,next) {
 
 
 
-  let listaUno=  lista(usuarioUno,dbpeliculas);
-  let listaDos=  lista(usuarioDos, dbpeliculas);
+  listaUno=  lista(usuarioUno,dbpeliculas);
+
+    for (let i in listaUno){
+        arraycalUno.push(listaUno[i].calSugerencia);
+    }
+
+
+  listaDos=  lista(usuarioDos, dbpeliculas);
 
 
 
-    let intercepcion= interceptar(listaUno,listaDos);
+    for (let i in listaDos){
+        arraycalDos.push(listaDos[i].calSugerencia);
+    }
+
+
+/*
+    for (let i of listaDos){
+        if(i.title==="Mandela: Long Walk to Freedom"){
+            console.log("Mandela: Long Walk to Freedom: "+ i.calSugerencia);
+        }
+    }
+*/
+
+
+    intercepcion= interceptar(listaUno,listaDos);
     console.log("numero preselecionados: "+intercepcion.length);
 
     console.log(cincoFavoritos(intercepcion)[0]);
@@ -119,13 +148,18 @@ function interceptar(a,b) {
     let usuUno=a;
     let usuDos=b;
     let result = [];
+    let insert;
+    let calUsuUno;
+    let calUsuDos;
+    let calFinal;
 
     for (let i in usuUno){
         if (usuUno[i].id===usuDos[i].id) {
-            let calUsuUno              = usuUno[i].calSugerencia;
-            let calUsuDos              = usuDos[i].calSugerencia;
-            let calFinal               = calUsuUno + calUsuDos;
-            let insert                 = usuUno[i];
+            calUsuUno              = arraycalUno[i];
+            calUsuDos              = arraycalDos[i];
+            calFinal               = calUsuUno + calUsuDos;
+            insert                 = usuUno[i];
+            insert.calSugerencia= calUsuUno;
             insert.calSugerenciaUsuDos = calUsuDos;
             insert.calSugerenciaFinal  = calFinal;
             result.push(insert);
@@ -318,7 +352,9 @@ let listaFinal=[];
         return 0;
     });
 
-    console.log("preselecoin: "+prueba[0].calSugerencia);
+    console.log("favorito: "+prueba[0].calSugerencia +" nombre: "+prueba[0].title);
+
+
 
       listaSugerencia.sort(function (a,b) {
         let calA = a.id;
@@ -332,7 +368,6 @@ let listaFinal=[];
         }
         return 0;
     });
-
 
 
     console.log("contador uno: "+contador);

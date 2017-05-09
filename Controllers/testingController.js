@@ -1,19 +1,13 @@
 
 const pelis= require('../DB peliculas JSON/DB');
-let genero;
-let director;
-let duracion=[];
-let rating;
-let anoWTF=[];
+const dbpeliculas= pelis.getDbCompleta();
+
+
 
 let usuarioUno={genero: [],director: [],duracion: [],rating: [],ano: []};
 let usuarioDos={genero: [],director: [],duracion: [],rating: [],ano: []};
 
-let generoDos;
-let directorDos;
-let duracionDos=[];
-let ratingDos;
-let anoWTFDos=[];
+
 
 
 
@@ -80,8 +74,8 @@ function sugerir(req,res,next) {
 
 
 
-  let listaUno=  listaUsuUno();
-  let listaDos=  listaUsuDos();
+  let listaUno=  lista(usuarioUno,dbpeliculas);
+  let listaDos=  lista(usuarioDos, dbpeliculas);
 
 
 
@@ -90,7 +84,7 @@ function sugerir(req,res,next) {
 
     console.log(cincoFavoritos(intercepcion)[0]);
 
-    res.redirect('/test/');
+    res.end();
 
 }
 
@@ -122,21 +116,25 @@ function cincoFavoritos(preselecionados) {
 
 
 function interceptar(a,b) {
-    let result=[];
-    for (let i of a){
-        for (let j of b){
-            if(i.id === j.id){
-                let paraAnadir= i;
-                let calUno=i.calSugerencia;
-                let calDos=j.calSugerencia;
+    let usuUno=a;
+    let usuDos=b;
+    let result = [];
 
-
-                paraAnadir["calSugerenciaUsuDos"]= calDos;
-                paraAnadir["calSugerenciaFinal"]=calUno+calDos;
-                result.push(paraAnadir);
-            }
+    for (let i in usuUno){
+        if (usuUno[i].id===usuDos[i].id) {
+            let calUsuUno              = usuUno[i].calSugerencia;
+            let calUsuDos              = usuDos[i].calSugerencia;
+            let calFinal               = calUsuUno + calUsuDos;
+            let insert                 = usuUno[i];
+            insert.calSugerenciaUsuDos = calUsuDos;
+            insert.calSugerenciaFinal  = calFinal;
+            result.push(insert);
         }
+
     }
+
+
+
 
     return result;
 }
@@ -144,51 +142,72 @@ function interceptar(a,b) {
 
 
 
-function listaUsuUno() {
-    let listaSugerencia= pelis.getDbCompleta();
+function lista(array, peliculas) {
+    let listaSugerencia= peliculas;
 
     let contador=0;
 
+    let usuario=array;
+
 //AGREGAR VALOR SUGERENCIA A LAS PELICULAS
-    for (let i of  listaSugerencia){
-        if(i.hasOwnProperty('calSugerencia')){
-             listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia=0;
+    for (let i in listaSugerencia){
+        if(listaSugerencia[i].hasOwnProperty('calSugerencia')){
+             listaSugerencia[i].calSugerencia=0;
+
         } else {
-            listaSugerencia[listaSugerencia.indexOf(i)]["calSugerencia"]=0;
+            listaSugerencia[i]["calSugerencia"]=0;
+
         }
+
+        if(listaSugerencia[i].hasOwnProperty('calSugerenciaUsuDos')){
+            listaSugerencia[i].calSugerenciaUsuDos=0;
+
+        } else {
+            listaSugerencia[i]["calSugerenciaUsuDos"]=0;
+
+        }
+
+        if(listaSugerencia[i].hasOwnProperty('calSugerenciaFinal')){
+            listaSugerencia[i].calSugerenciaFinal=0;
+
+        } else {
+            listaSugerencia[i]["calSugerenciaFinal"]=0;
+
+        }
+
 
     }
 
 
 //FOR PARA ENCONTRAR GENEROS Y ASIGNAR LA CALIFICACION
 
-    for (let j of usuarioUno.genero){
+    for (let j of usuario.genero){
 
-        for (let i of listaSugerencia) {
+        for (let i in listaSugerencia) {
             try{
                 // console.log(j.genres[0].title);
-                if(i.genres[0].title === j){
+                if(listaSugerencia[i].genres[0].title === j){
 
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
+                    listaSugerencia[i].calSugerencia+=0.3;
                     contador++;
 
 
 
-                } else if (i.genres[1].title === j){
+                } else if (listaSugerencia[i].genres[1].title === j){
 
                     contador++;
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
+                    listaSugerencia[i].calSugerencia+=0.3;
 
-                } else if (i.genres[2].title === j){
+                } else if (listaSugerencia[i].genres[2].title === j){
 
 
                     contador++;
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
+                    listaSugerencia[i].calSugerencia+=0.3;
 
-                } else if (i.genres[3].title === j) {
+                } else if (listaSugerencia[i].genres[3].title === j) {
 
 
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
+                    listaSugerencia[i].calSugerencia+=0.3;
                     contador++;
 
                 }
@@ -208,25 +227,25 @@ function listaUsuUno() {
 
 
 //FOR PARA ENCONTRAR RATING Y ASIGNAR LA CALIFICACION
-    for (let j of usuarioUno.rating){
+    for (let j of usuario.rating){
 
-        for (let i of listaSugerencia) {
+        for (let i in listaSugerencia) {
             // console.log(j.genres[0].title);
-            if(i.rating === j) {
+            if(listaSugerencia[i].rating === j) {
 
-                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
+                listaSugerencia[i].calSugerencia += 0.15;
             }
         }
     }
 
 
     //FOR PARA ENCONTRAR Año Y ASIGNAR LA CALIFICACION
-    for (let j of usuarioUno.ano){
+    for (let j of usuario.ano){
 
-        for (let i of listaSugerencia) {
-            if ((i.release_year > j[0]) && (i.release_year < j[1])) {
+        for (let i in listaSugerencia) {
+            if ((listaSugerencia[i].release_year > j[0]) && (listaSugerencia[i].release_year < j[1])) {
                 contador++;
-                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
+                listaSugerencia[i].calSugerencia += 0.2;
             }
         }
 
@@ -235,12 +254,12 @@ function listaUsuUno() {
 
 
     //FOR PARA ENCONTRAR DURACION Y ASIGNAR LA DURACION
-    for (let j of usuarioUno.duracion){
+    for (let j of usuario.duracion){
 
-        for (let i of listaSugerencia) {
-            if ((i.duration > j[0]*60) && (i.duration < j[1]*60)) {
+        for (let i in listaSugerencia) {
+            if ((listaSugerencia[i].duration > j[0]*60) && (listaSugerencia[i].duration < j[1]*60)) {
                 contador++;
-                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
+                listaSugerencia[i].calSugerencia += 0.15;
             }
         }
 
@@ -249,13 +268,13 @@ function listaUsuUno() {
 
 
     //FOR PARA ENCONTRAR DIRECTOR Y ASIGNAR El DIRECTOR
-    for (let j of usuarioUno.director){
+    for (let j of usuario.director){
 
-        for (let i of listaSugerencia) {
+        for (let i in listaSugerencia) {
             try {
-                if (i.directors[0].name === j) {
+                if (listaSugerencia[i].directors[0].name === j) {
                     contador++;
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
+                    listaSugerencia[i].calSugerencia += 0.2;
                 }
             } catch (error){
                 if (error.name === 'TypeError')
@@ -277,167 +296,54 @@ let listaFinal=[];
 
 //un metodo para sacar los favoritos
     console.log("--------------------------FAVORITOS------------------------");
-    for (let i of listaSugerencia) {
-        if (i.calSugerencia >= 0.4) {
+    for (let i in listaSugerencia) {
+        if (listaSugerencia[i].calSugerencia >= 0.4) {
           //  console.log("uno: "+i.title+" id: "+i.id+"-------Califiacion: "+i.calSugerencia);
-            listaFinal.push(i);
+            listaFinal.push(listaSugerencia[i]);
         }
     }
+
+    let prueba= listaSugerencia;
+
+    prueba.sort(function (a,b) {
+        let calA = a.calSugerencia;
+        let calB = b.calSugerencia;
+
+        if (calA < calB) {
+            return 1;
+        }
+        if (calA > calB) {
+            return -1;
+        }
+        return 0;
+    });
+
+    console.log("preselecoin: "+prueba[0].calSugerencia);
+
+      listaSugerencia.sort(function (a,b) {
+        let calA = a.id;
+        let calB = b.id;
+
+        if (calA < calB) {
+            return 1;
+        }
+        if (calA > calB) {
+            return -1;
+        }
+        return 0;
+    });
 
 
 
     console.log("contador uno: "+contador);
-    return listaFinal;
+
+    return listaSugerencia;
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function listaUsuDos() {
-    let listaSugerencia= pelis.getDbCompleta();
 
-    let contador=0;
-
-//AGREGAR VALOR SUGERENCIA A LAS PELICULAS
-    for (let i of  listaSugerencia){
-        if(i.hasOwnProperty('calSugerencia')){
-            listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia=0;
-        } else {
-            listaSugerencia[listaSugerencia.indexOf(i)]["calSugerencia"]=0;
-        }
-
-    }
-
-
-//FOR PARA ENCONTRAR GENEROS Y ASIGNAR LA CALIFICACION
-    for (let j of usuarioDos.genero){
-
-        for (let i of listaSugerencia) {
-            try{
-                // console.log(j.genres[0].title);
-                if(i.genres[0].title === j){
-
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
-                    contador++;
-
-
-
-                } else if (i.genres[1].title === j){
-
-                    contador++;
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
-
-                } else if (i.genres[2].title === j){
-
-
-                    contador++;
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
-
-                } else if (i.genres[3].title === j) {
-
-
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia+=0.2;
-                    contador++;
-
-                }
-
-
-            }catch (error){
-                if (error.name === 'TypeError')
-                {
-
-                } else {
-                    console.log(error);
-                }
-            }
-        }
-
-    }
-
-
-//FOR PARA ENCONTRAR RATING Y ASIGNAR LA CALIFICACION
-    for (let j of usuarioDos.rating){
-
-        for (let i of listaSugerencia) {
-            // console.log(j.genres[0].title);
-            if(i.rating === j) {
-
-                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
-
-
-            }
-
-        }
-
-    }
-
-
-    //FOR PARA ENCONTRAR Año Y ASIGNAR LA CALIFICACION
-    for (let j of usuarioDos.ano){
-
-        for (let i of listaSugerencia) {
-            if ((i.release_year > j[0]) && (i.release_year < j[1])) {
-                contador++;
-                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
-            }
-        }
-
-    }
-
-
-    //FOR PARA ENCONTRAR DURACION Y ASIGNAR LA DURACION
-    for (let j of listaSugerencia) {
-        for (let i of usuarioDos.duracion){
-
-            if ((i.duration > j[0]*60) && (i.duration < j[1]*60)) {
-                contador++;
-                listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
-            }
-
-        }
-
-    }
-
-    //FOR PARA ENCONTRAR DIRECTOR Y ASIGNAR El DIRECTOR
-    for (let j of usuarioDos.director){
-        for (let i of listaSugerencia) {
-            try {
-                if (i.directors[0].name === j) {
-                    contador++;
-                    listaSugerencia[listaSugerencia.indexOf(i)].calSugerencia += 0.2;
-                }
-            } catch (error){
-                if (error.name === 'TypeError')
-                {
-
-                } else {
-                    console.log(error);
-                }
-            }
-        }
-    }
-
-
-
-
-
-let listaFinal=[];
-
-//un metodo para sacar los favoritos
-    console.log("--------------------------FAVORITOS------------------------");
-    for (let i of listaSugerencia) {
-        if (i.calSugerencia >= 0.4) {
-          //  console.log("dos: "+i.title+" id: "+i.id+"-------Califiacion: "+i.calSugerencia);
-            listaFinal.push(i);
-        }
-    }
-
-
-
-    console.log("contador Dos : "+contador);
-    return listaFinal;
-
-}
 
 module.exports = {
     sugerir

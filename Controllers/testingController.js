@@ -127,9 +127,12 @@ function interceptar(a,b) {
         for (let j of b){
             if(i.id === j.id){
                 let paraAnadir= i;
+                let calUno=i.calSugerencia;
+                let calDos=j.calSugerencia;
 
-                paraAnadir["calSugerenciaUsuDos"]= j.calSugerencia;
-                paraAnadir["calSugerenciaFinal"]=paraAnadir.calSugerencia+paraAnadir.calSugerenciaUsuDos;
+
+                paraAnadir["calSugerenciaUsuDos"]= calDos;
+                paraAnadir["calSugerenciaFinal"]=calUno+calDos;
                 result.push(paraAnadir);
             }
         }

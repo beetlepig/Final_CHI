@@ -259,22 +259,35 @@ function agregarParametroUnuarioDos(name) {
 
 form.submit(function (event) {
     event.preventDefault();
-    /*
+
     enviarDatos().always(function (data,status) {
         console.log(status);
         if (status === 'success') {
             console.log(data);
-            errorMensaje.children(":first").text('');
-            sessionStorage.datos=JSON.stringify(data);
-            console.log(JSON.parse(sessionStorage.datos));
+            $.each(data, function(index, value) {
+                let divi  = $('#recomendados');
+                let carti = $('<div>').addClass("card");
+                let titulo= $("<h4>"+value.title+"</h4>");
+                carti.append(titulo);
 
-            window.location.replace('./home.html');
+                let imagen  = $("<div>", {"style": "background: url("+value.poster_400x570+") no-repeat center / cover"}).addClass("img");
+                carti.append(imagen);
+                $.each(value.genres, function (indexdos, valuedos) {
+                   let  generin= $("<h5>"+valuedos.title+"</h5>");
+                   carti.append(generin);
+                });
+                let descri=  $("<p>"+value.overview+"</p>");
+                carti.append(descri);
+                divi.append(carti);
+            });
+
+
         } else if (status === "error") {
             console.log(data.responseJSON);
-            errorMensaje.children(":first").text(data.responseJSON);
+
         }
     });
-    */
+
     enviarDatos();
 
 });
@@ -286,7 +299,7 @@ function enviarDatos() {
 
 
 
-    $.ajax({
+    return $.ajax({
                       url: "/test/variables",
                       type: "post",
                       contentType: "application/json",

@@ -120,10 +120,11 @@ function sugerir(req,res,next) {
 
     intercepcion= interceptar(listaUno,listaDos);
     console.log("numero preselecionados: "+intercepcion.length);
+    let cinco=cincoFavoritos(intercepcion);
 
-    console.log(cincoFavoritos(intercepcion)[0]);
+    console.log(cinco[0]);
 
-    res.end();
+    res.status(200).json(cinco);
 
 }
 

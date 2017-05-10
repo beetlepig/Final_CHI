@@ -24,6 +24,14 @@ let intercepcion;
 
 
 function sugerir(req,res,next) {
+    arraycalUno=[];
+    arraycalDos=[];
+    listaUno=[];
+    listaDos=[];
+    intercepcion=[];
+
+    usuarioUno={genero: [],director: [],duracion: [],rating: [],ano: []};
+    usuarioDos={genero: [],director: [],duracion: [],rating: [],ano: []};
 
     usuarioUno.genero=req.body.usuarioUno.genero;
     usuarioUno.director=req.body.usuarioUno.director;

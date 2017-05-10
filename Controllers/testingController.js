@@ -21,6 +21,8 @@ let intercepcion;
 
 
 
+
+
 function sugerir(req,res,next) {
 
     usuarioUno.genero=req.body.usuarioUno.genero;

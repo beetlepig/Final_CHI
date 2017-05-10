@@ -26,13 +26,14 @@
         <option value="Western">Western</option>
     </select>
         <button type="button" onclick="agregarParametroUnuarioUno('genero')">save</button>
-    <select name="directorUno" id="directorUno">
+        <input type="text" name="directorUno" list="directorsUno" id="directorUno" placeholder="director">
+    <datalist id="directorsUno">
 
     {{#each name}}
         <option value="{{this}}">{{this}}</option>
     {{/each}}
 
-    </select>
+    </datalist>
         <button type="button" onclick="agregarParametroUnuarioUno('director')">save</button>
 
     <select name="duracionUno" id="duracionUno">
@@ -88,12 +89,13 @@
             <option value="Western">Western</option>
         </select>
              <button type="button" onclick="agregarParametroUnuarioDos('genero')">save</button>
-        <select name="directorDos" id="directorDos">
+        <input type="text" name="directorDos" list="directorsDos" id="directorDos" placeholder="director">
+        <datalist id="directorsDos">
             {{#each name}}
                 <option value="{{this}}">{{this}}</option>
             {{/each}}
 
-        </select>
+        </datalist>
              <button type="button" onclick="agregarParametroUnuarioDos('director')">save</button>
 
         <select name="duracionDos" id="duracionDos">
@@ -123,6 +125,54 @@
     </div>
     <button type="submit">Enviar</button>
 </form>
+
+<div id="seleccionadosUno">
+<h4>Usuario Uno</h4>
+    <div id="seleccionadosUnoGenero">
+        <p style="color: red">Genero:</p>
+    </div>
+
+    <div id="seleccionadosUnoDirector">
+        <p style="color: red">Director:</p>
+    </div>
+
+    <div id="seleccionadosUnoDuracion">
+        <p style="color: red">Duracion:</p>
+    </div>
+
+    <div id="seleccionadosUnoRating">
+        <p style="color: red">Rating:</p>
+    </div>
+
+    <div id="seleccionadosUnoAno">
+        <p style="color: red">Año:</p>
+    </div>
+
+</div>
+
+<div id="seleccionadosDos">
+    <h4>Usuario Dos</h4>
+    <div id="seleccionadosDosGenero">
+        <p style="color: red">Genero:</p>
+    </div>
+
+    <div id="seleccionadosDosDirector">
+        <p style="color: red">Director:</p>
+    </div>
+
+    <div id="seleccionadosDosDuracion">
+        <p style="color: red">Duracion:</p>
+    </div>
+
+    <div id="seleccionadosDosRating">
+        <p style="color: red">Rating:</p>
+    </div>
+
+    <div id="seleccionadosDosAno">
+        <p style="color: red">Año:</p>
+    </div>
+
+</div>
 
 
 <script type="application/javascript" src="/javascripts/logicatest.js"></script>

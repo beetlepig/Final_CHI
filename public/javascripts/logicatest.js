@@ -18,6 +18,7 @@ let encontrado=false;
 
             if (usuarioUno.genero.length===0){
                 usuarioUno.genero.push(value);
+                $('#seleccionadosUnoGenero').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioUno.genero) {
                     if (value === i) {
@@ -28,6 +29,7 @@ let encontrado=false;
                 }
                 if (!encontrado){
                     usuarioUno.genero.push(value);
+                    $('#seleccionadosUnoGenero').append("<p>"+value+"</p>");
                 }
 
             }
@@ -38,6 +40,7 @@ let encontrado=false;
             encontrado=false;
             if (usuarioUno.director.length===0){
                 usuarioUno.director.push(value);
+                $('#seleccionadosUnoDirector').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioUno.director) {
                     if (value === i) {
@@ -48,6 +51,7 @@ let encontrado=false;
                 }
                 if (!encontrado){
                     usuarioUno.director.push(value);
+                    $('#seleccionadosUnoDirector').append("<p>"+value+"</p>");
                 }
 
             }
@@ -58,6 +62,7 @@ let encontrado=false;
             encontrado=false;
             if (usuarioUno.duracion.length===0){
                 usuarioUno.duracion.push(value);
+                $('#seleccionadosUnoDuracion').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioUno.duracion) {
                     if (value === i) {
@@ -68,6 +73,7 @@ let encontrado=false;
                 }
                 if (!encontrado){
                     usuarioUno.duracion.push(value);
+                    $('#seleccionadosUnoDuracion').append("<p>"+value+"</p>");
                 }
 
             }
@@ -80,6 +86,7 @@ let encontrado=false;
             encontrado=false;
             if (usuarioUno.rating.length===0){
                 usuarioUno.rating.push(value);
+                $('#seleccionadosUnoRating').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioUno.rating) {
                     if (value === i) {
@@ -90,6 +97,7 @@ let encontrado=false;
                 }
                 if (!encontrado){
                     usuarioUno.rating.push(value);
+                    $('#seleccionadosUnoRating').append("<p>"+value+"</p>");
                 }
 
             }
@@ -101,6 +109,7 @@ let encontrado=false;
             encontrado=false;
             if (usuarioUno.ano.length===0){
                 usuarioUno.ano.push(value);
+                $('#seleccionadosUnoAno').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioUno.ano) {
                     if (value === i) {
@@ -111,6 +120,7 @@ let encontrado=false;
                 }
                 if (!encontrado){
                     usuarioUno.ano.push(value);
+                    $('#seleccionadosUnoAno').append("<p>"+value+"</p>");
                 }
 
             }
@@ -131,6 +141,7 @@ function agregarParametroUnuarioDos(name) {
 
             if (usuarioDos.genero.length===0){
                 usuarioDos.genero.push(value);
+                $('#seleccionadosDosGenero').append("<p>"+value+"</p>")
             } else {
                 for (let i of usuarioDos.genero) {
                     if (value === i) {
@@ -141,6 +152,7 @@ function agregarParametroUnuarioDos(name) {
                 }
                 if (!encontrado){
                     usuarioDos.genero.push(value);
+                    $('#seleccionadosDosGenero').append("<p>"+value+"</p>");
                 }
 
             }
@@ -151,6 +163,7 @@ function agregarParametroUnuarioDos(name) {
             encontrado=false;
             if (usuarioDos.director.length===0){
                 usuarioDos.director.push(value);
+                $('#seleccionadosDosDirector').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioDos.director) {
                     if (value === i) {
@@ -161,6 +174,7 @@ function agregarParametroUnuarioDos(name) {
                 }
                 if (!encontrado){
                     usuarioDos.director.push(value);
+                    $('#seleccionadosDosDirector').append("<p>"+value+"</p>");
                 }
 
             }
@@ -171,6 +185,7 @@ function agregarParametroUnuarioDos(name) {
             encontrado=false;
             if (usuarioDos.duracion.length===0){
                 usuarioDos.duracion.push(value);
+                $('#seleccionadosDosDuracion').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioDos.duracion) {
                     if (value === i) {
@@ -181,6 +196,7 @@ function agregarParametroUnuarioDos(name) {
                 }
                 if (!encontrado){
                     usuarioDos.duracion.push(value);
+                    $('#seleccionadosDosDuracion').append("<p>"+value+"</p>");
                 }
 
             }
@@ -193,6 +209,7 @@ function agregarParametroUnuarioDos(name) {
             encontrado=false;
             if (usuarioDos.rating.length===0){
                 usuarioDos.rating.push(value);
+                $('#seleccionadosDosRating').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioDos.rating) {
                     if (value === i) {
@@ -203,6 +220,7 @@ function agregarParametroUnuarioDos(name) {
                 }
                 if (!encontrado){
                     usuarioDos.rating.push(value);
+                    $('#seleccionadosDosRating').append("<p>"+value+"</p>");
                 }
 
             }
@@ -214,6 +232,7 @@ function agregarParametroUnuarioDos(name) {
             encontrado=false;
             if (usuarioDos.ano.length===0){
                 usuarioDos.ano.push(value);
+                $('#seleccionadosDosAno').append("<p>"+value+"</p>");
             } else {
                 for (let i of usuarioDos.ano) {
                     if (value === i) {
@@ -224,6 +243,7 @@ function agregarParametroUnuarioDos(name) {
                 }
                 if (!encontrado){
                     usuarioDos.ano.push(value);
+                    $('#seleccionadosDosAno').append("<p>"+value+"</p>");
                 }
 
             }

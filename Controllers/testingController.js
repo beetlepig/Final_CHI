@@ -1,5 +1,6 @@
 
 const pelis= require('../DB peliculas JSON/DB');
+const mkdirp = require('mkdirp');
 const dbpeliculas= pelis.getDbCompleta();
 let fs = require('fs');
 
@@ -16,6 +17,8 @@ let listaDos;
 
 let intercepcion;
 
+let cinco;
+
 
 
 
@@ -26,12 +29,19 @@ function guardarDatos() {
     console.log(current);
     const suma= current+1;
     fs.writeFileSync('../DB local/base.json', JSON.stringify({currentSet:(suma)}));
-  /*
-   fs.writeFile('../DB local/user1.json', JSON.stringify(usuarioUno), 'utf-8', function(err) {
-        if (err) throw err;
-        console.log('Done!')
+
+
+    mkdirp(`../DB local/pair${current}`, function (err) {
+        if (err){
+            console.error(err)
+        } else{
+            fs.writeFileSync(`../DB local/pair${current}/user1.json`, JSON.stringify(usuarioUno));
+            fs.writeFileSync(`../DB local/pair${current}/user2.json`, JSON.stringify(usuarioDos));
+            fs.writeFileSync(`../DB local/pair${current}/recomendados.json`, JSON.stringify(cinco));
+
+        }
     });
-  */
+
 
 }
 
@@ -43,6 +53,7 @@ function sugerir(req,res,next) {
     listaUno=[];
     listaDos=[];
     intercepcion=[];
+    cinco=[];
 
     usuarioUno={genero: [],director: [],duracion: [],rating: [],ano: []};
     usuarioDos={genero: [],director: [],duracion: [],rating: [],ano: []};
@@ -134,7 +145,7 @@ function sugerir(req,res,next) {
 
     intercepcion= interceptar(listaUno,listaDos);
     console.log("numero preselecionados: "+intercepcion.length);
-    let cinco=cincoFavoritos(intercepcion);
+    cinco=cincoFavoritos(intercepcion);
 
     console.log(cinco[0]);
 

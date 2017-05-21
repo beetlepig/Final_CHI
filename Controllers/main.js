@@ -1,5 +1,5 @@
 let client = require('guidebox');
-let fs = require('fs')
+let fs = require('fs');
 let DATABASE= require('../DB peliculas JSON/DB');
 //let Guidebox = new client('afa2abc6dd945d98a3c1590deae1d12d571dfbf9', 'US');
 

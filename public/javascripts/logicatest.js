@@ -5,7 +5,7 @@
 
 let usuarioUno={genero: [],director: [],duracion: [],rating: [],ano: []};
 let usuarioDos={genero: [],director: [],duracion: [],rating: [],ano: []};
-let form=jQuery('#form');
+let form=$('#form');
 
 
 
@@ -288,13 +288,11 @@ form.submit(function (event) {
         }
     });
 
-    enviarDatos();
-
 });
 
 function enviarDatos() {
     let users={usuarioUno: usuarioUno, usuarioDos: usuarioDos};
-    var myJsonString = JSON.stringify(users);
+    let myJsonString = JSON.stringify(users);
     console.log(myJsonString);
 
 

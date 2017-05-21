@@ -1,7 +1,7 @@
 
 const pelis= require('../DB peliculas JSON/DB');
 const dbpeliculas= pelis.getDbCompleta();
-
+let fs = require('fs');
 
 
 let usuarioUno={genero: [],director: [],duracion: [],rating: [],ano: []};
@@ -19,7 +19,21 @@ let intercepcion;
 
 
 
+function guardarDatos() {
+    const initData= JSON.parse(fs.readFileSync('../DB local/base.json', 'utf-8'));
+    console.error(initData);
+    const current = initData.currentSet;
+    console.log(current);
+    const suma= current+1;
+    fs.writeFileSync('../DB local/base.json', JSON.stringify({currentSet:(suma)}));
+  /*
+   fs.writeFile('../DB local/user1.json', JSON.stringify(usuarioUno), 'utf-8', function(err) {
+        if (err) throw err;
+        console.log('Done!')
+    });
+  */
 
+}
 
 
 
@@ -124,8 +138,10 @@ function sugerir(req,res,next) {
 
     console.log(cinco[0]);
 
-
+    guardarDatos();
     res.status(200).json(cinco);
+
+
 
 }
 

@@ -1,0 +1,457 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+*{
+    font-family: 'Lato',sans-serif;
+}
+
+body{
+    background: white;
+}
+
+.header{
+    background: black;
+    background: -webkit-linear-gradient(#000000,rgba(0,0,0,0));
+    background: -o-linear-gradient(#000000,rgba(0,0,0,0));
+    background: -moz-linear-gradient(#000000,rgba(0,0,0,0));
+    background: linear-gradient(#5B5B5B,rgba(0,0,0,0));
+    height: 90px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.header .left{
+    float: right;
+}
+
+.header .menu li{
+    display: inline-block;
+    vertical-align:middle;
+    color: white;
+    margin: 5px;
+}
+
+.header .menu ul{
+    display: inline-block;
+    white-space: nowrap;
+    margin-left: -35px;
+}
+
+.header .menu input{
+    background: none;
+    border: none;
+    width: 100px;
+}
+
+.header .menu input::placeholder{
+    color: white;
+}
+
+.header .menu img{
+    width: 25px;
+}
+
+.header .menu #peque{
+    width: 10px;
+}
+
+.header .menu .aline{
+    display: inline-block;
+}
+
+.header .left{
+    margin-right: 70px;
+}
+
+.header .menu .dropdown button{
+    background: none;
+    border: none;
+}
+
+.header .logo{
+    float: left;
+    width: 118px;
+    padding: 25px;
+    margin-left: 25px;
+}
+
+.header .logo img{
+    width: 100%;
+}
+
+.content{
+    color: #333333;
+}
+
+.grupo{
+    margin-top: 100px;
+}
+
+.content .anounce{
+    background-image: url(/Imagenes/o9lkuOw0UijHi6o1VRVVCT3Ivul.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
+.content .anoun{
+    width: 480px;
+    margin-left: 50px;
+    padding-top: 200px;
+}
+
+.content .anoun p{
+    color: white;
+    font-size: 15pt;
+}
+.content .anoun img{
+    width: 420px;
+}
+
+.content .title{
+    font-family: 'Lato', sans-serif;
+    color: #333333;
+    font-size: 41pt;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content .title span{
+    font-size: 18pt;
+}
+
+.content .users{
+    text-align: center;
+}
+
+.content .modifico{
+    position: relative;
+    bottom: 20px;
+}
+
+.content .lis{
+    width: 400px;
+    margin: auto;
+}
+.content .lis li{
+    list-style-type:none;
+    text-align: left;
+}
+
+.content .lis input{
+    width: 380px;
+    background: #7C7C7C;
+    border: none;
+    height: 30px;
+}
+
+.content .lis p{
+    font-size: 9pt;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.content .user{
+    display: inline-block;
+    padding: 15px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.content .add{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.content .user img{
+    border: 5px solid #C6C6C6;
+}
+
+.content .user p{
+    font-size: 14pt;
+    color: #333333;
+}
+
+.content .con img{
+    width: 40px;
+    margin: 10px 10px;
+}
+
+.content .adm{
+    text-align: center;
+}
+
+.content .gens{
+    margin: auto;
+    width: 1100px;
+}
+
+.content .rat p{
+    width: 127px;
+    font-size: 12pt;
+    margin-left: 4px;
+}
+
+.content .gen{
+    padding: 0;
+    position: relative;
+}
+
+.content .rat{
+    vertical-align: top;
+}
+
+.content .gen p{
+    left: 0;
+    vertical-align: middle;
+    position:absolute;
+    text-align:center;
+    top: -14px;
+    padding-top: 63px;
+    padding-bottom: 63px;
+    width: 100%;
+    color: rgba(0,0,0,0);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10pt;
+}
+
+.content .gen p:hover{
+    color: white;
+    background: rgba(0,0,0,0.5);
+}
+
+.content .gen p:hover{
+    color: white;
+}
+
+.content .next img{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 50px;
+    margin-top: -50px; /* Half the height */
+    margin-left: -250px; /* Half the width */
+}
+.content .next img:hover{
+    cursor: pointer;
+}
+
+.content .back img{
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    left: 10px;
+    margin-top: -50px; /* Half the height */
+}
+
+.content .back img:hover{
+    cursor: pointer;
+}
+
+.content .adm p{
+    width: 200px;
+    padding: 4px;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid #808072;
+}
+
+/*Drop down*/
+.dropdown .dropbtn {
+    cursor: pointer; 
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+
+}
+
+
+.dropdown-content {
+    position: absolute;
+    background-color: #141414;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+
+.dropdown-content .direction {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    display: block;
+    vertical-align: middle;
+}
+
+.dropdown-content a{
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
+
+.dropdown-content a:hover {
+    text-decoration:underline;
+}
+
+.show {
+    display: block;
+}
+.dropdown-content a img{
+    margin-right: 15px;
+}
+
+.dropdown-content .este{
+    border-bottom: 1px solid #B3B3B3;
+}
+/**/
+
+.agregar{
+    width: 800px;
+    margin: auto; 
+    border-bottom: 1px solid #808080;
+    margin-bottom: 0px;
+    padding: 10px;
+}
+
+.agregar h1{
+    font-size: 40pt;
+    text-align: left;
+}
+
+.agregar p {
+    font-size: 16pt;
+    text-align: left;
+}
+
+.agregar img{
+    width: 100px;
+    display: inline;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.agregar input{
+    display: inline;
+    vertical-align: middle;
+    background: #808080;
+    width: 70%;
+    height: 30px;
+
+    border: none;
+    color: white;
+}
+
+.agregar input::placeholder{
+    color: white;
+}
+
+.agregar button{
+    background: white;
+    color: #333333;
+    border: 2px solid #333333;
+    margin: 5px;
+    padding: 5px;
+    font-size: 10pt;
+    letter-spacing: 3px;
+}
+.users #terminar{
+    position: absolute;
+    bottom: 100px;
+    right: 200px;
+    background: #7C7C7C;
+    color: white;
+    border: none;
+    padding: 6px;
+    letter-spacing: 2px;
+}
+
+.agregar #continuar{
+    background: #333333;
+    color: antiquewhite;
+}
+
+.agregar button:hover{
+    background: #333333;
+    color: antiquewhite;
+}
+
+.users .center{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.agregar #continuar:hover{
+    background: white;
+    color: #333333;
+    border: 2px solid #333333;
+}
+
+.agregar #ya{
+    font-size: 12pt;
+}
+
+.agregar .fin{
+    width: 170px;
+    border-bottom: 1px solid red;
+}
+
+.agregar .fin p{
+    display: inline-block;
+    color: black;
+}
+
+.agregar .fin a{
+
+    text-decoration: none;
+}
+
+.agregar .fin a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.agregar .fin img{
+    display: inline-block;
+    width: 30px;
+}
+
+
+@media only screen and (max-width: 950px) {
+    .header .logo{
+        width: 70px;
+        padding: 15px;
+        margin-top: 5px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .header .logo{
+        padding: 15px;
+        margin-left: 10px;
+    }
+
+    .content .users{
+        margin: auto;
+        width: 331px;
+    }
+}
+@media only screen and (max-width: 330px){
+    .content .title{
+        font-size: 20pt;
+    }
+    .content .users{
+        margin: auto;
+        width: 100%;
+    }
+    .content .user{
+        margin-bottom: -25px;
+    }
+
+    .content .user img{
+        width: 100px;
+    }
+}

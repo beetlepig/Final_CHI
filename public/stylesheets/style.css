@@ -1,8 +1,105 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+*{
+    font-family: 'Lato',sans-serif;
 }
 
-a {
-  color: #00B7FF;
+body{
+    background: #141414;
+}
+
+.header{
+    background: black;
+    background: -webkit-linear-gradient(#000000,#141414);
+    background: -o-linear-gradient(#000000,#141414);
+    background: -moz-linear-gradient(#000000,#141414);
+    background: linear-gradient(#000000,#141414);
+}
+
+.header .logo{
+    width: 118px;
+    padding: 25px;
+    margin-left: 25px;
+}
+
+.header .logo img{
+    width: 100%;
+}
+
+.content{
+    color: #808072;
+
+}
+
+.content .title{
+    font-family: 'Lato', sans-serif;
+    color: white;
+    font-size: 41pt;
+    text-align: center;
+
+}
+
+.content .users{
+    text-align: center;
+}
+
+.content .user{
+    display: inline-block;
+    padding: 15px;
+}
+
+.content .user img{
+    border: 5px solid #1E1E1E;
+}
+
+.content .user p{
+    font-size: 14pt;
+}
+
+.content .adm{
+    text-align: center;
+}
+
+.content .adm p{
+    width: 200px;
+    padding: 4px;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid #808072;
+}
+
+@media only screen and (max-width: 950px) {
+    .header .logo{
+        width: 70px;
+        padding: 15px;
+        margin-top: 5px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .header .logo{
+        padding: 15px;
+        margin-left: 10px;
+    }
+
+    .content .users{
+        margin: auto;
+        width: 331px;
+    }
+}
+@media only screen and (max-width: 330px){
+    .content .title{
+        font-size: 20pt;
+    }
+    .content .users{
+        margin: auto;
+        width: 100%;
+    }
+    .content .user{
+        margin-bottom: -25px;
+    }
+    
+    .content .user img{
+        width: 100px;
+    }
 }

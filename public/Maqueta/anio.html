@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>Grupal o qué</title>
+        <link rel="icon" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico">
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/7.0.0/normalize.css">
+        <link rel="stylesheet" href="/stylesheets/stryleDos.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="menu logo">
+                    <a href="browserDos.html">
+                        <img src="/Imagenes/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="menu left">
+                    <div class="aline dropdown">
+                        <button class="dropbtn" onclick="myFunction()">
+                            <ul>
+                                <li><img src="/Imagenes/Isabella%20(2).jpg" alt=""></li>
+                                <li>Isabella</li>
+                                <li><img id="peque" src="/Imagenes/flecha.png" alt=""></li>
+                            </ul>
+                        </button>
+                        <div class="dropdown-content" id="myDropdown">
+                            <a href="con_quien.html">
+                                <div class="direction este">
+                                    <img src="/Imagenes/Grupal.jpg" alt="">Grupal
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="direction">
+                                    <img src="/Imagenes/Jaime.jpg" alt="">Jaime
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="direction">
+                                    <img src="/Imagenes/Carlos.jpg" alt="">Carlos
+                                </div>
+                            </a>
+                            <div class="direction este">
+                                <a href="#">Administrar perfiles</a>
+                            </div>
+                            <div class="direction"><a href="">Tu cuenta</a></div>
+                            <div class="direction"><a href="">Centro de ayúda</a></div>
+                            <div class="direction"><a href="">Cerrar sesión de Netflix</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content grupo">
+                <div class="title">
+                    <p>3. AÑO</p>
+                </div>
+                <div class="users gens rats">
+                    <div class="back">
+                        <img src="/Imagenes/back.png" alt="" onclick="window.location= './rating.html'">
+                    </div>
+                    <div class="user add rat">
+                        <img src="/Imagenes/Anios/1940.jpg" alt="">
+                        <p>1940 - 1960</p>
+                    </div>
+                    <div class="user add rat">
+                        <img src="/Imagenes/Anios/1961.jpg" alt="">
+                        <p>1961 - 1980</p>
+                    </div>
+                    <div class="user add rat">
+                        <img src="/Imagenes/Anios/1981.jpg" alt="">
+                        <p>1981 - 2000</p>
+                    </div>
+                    <div class="user add rat">
+                        <img src="/Imagenes/Anios/2001.jpg" alt="">
+                        <p>2001 - 2005</p>
+                    </div>
+                    <div class="user add rat">
+                        <img src="/Imagenes/Anios/2006.jpg" alt="">
+                        <p>2006 - 2010</p>
+                    </div>
+                    <div class="user add rat">
+                        <img src="/Imagenes/Anios/2011.jpg" alt="">
+                        <p>2011 - 2017</p>
+                    </div>
+                    <div class="next">
+                        <img src="/Imagenes/next.png" alt="" onclick="window.location='./duracion.html'">
+                    </div>
+                    <div class="user con">
+                        <img src="/Imagenes/Angela.jpg" alt=""><img src="/Imagenes/Carlos.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+            var fun = 1;
+            document.getElementById("myDropdown").style.display = 'none';
+            function myFunction() {
+
+                if(fun == 0){
+                    var noShow= document.getElementById("myDropdown").style.display = 'none';
+                    fun+=1;
+                }else{
+                    var show = document.getElementById('myDropdown').style.display = 'inherit';
+
+                    fun-=1;
+                }
+                // document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(e) {
+                if (!e.target.matches('.dropbtn')) {
+                    var myDropdown = document.getElementById("myDropdown");
+                    if (myDropdown.classList.contains('show')) {
+                        myDropdown.classList.remove('show');
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

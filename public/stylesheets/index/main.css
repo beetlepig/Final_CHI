@@ -23,3 +23,23 @@
     height: 40%;
     background-color: blue;
 }
+
+#seleccionadosUnoDiv div{
+    background-color: blue;
+    margin: 1%;
+    padding: 0.5%;
+}
+
+#seleccionadosUnoDiv {
+    display: flex;
+}
+
+#seleccionadosDosDiv div{
+    background-color: blue;
+    margin: 1%;
+    padding: 0.5%;
+}
+
+#seleccionadosDosDiv {
+    display: flex;
+}

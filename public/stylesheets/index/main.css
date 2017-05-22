@@ -21,22 +21,34 @@
     background-color: blue;
 }
 
+#usuUnoDiv {
+    display: flex;
+    justify-content: space-around;
+}
+
+#usoDosDiv {
+    display: flex;
+    justify-content: space-around;
+}
+
 #seleccionadosUnoDiv div{
-    background-color: blue;
+  /*  background-color: blue; */
     margin: 1%;
     padding: 0.5%;
 }
 
 #seleccionadosUnoDiv {
     display: flex;
+    justify-content: space-around;
 }
 
 #seleccionadosDosDiv div{
-    background-color: blue;
+ /*   background-color: blue; */
     margin: 1%;
     padding: 0.5%;
 }
 
 #seleccionadosDosDiv {
     display: flex;
+    justify-content: space-around;
 }

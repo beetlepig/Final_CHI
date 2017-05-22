@@ -3,6 +3,9 @@
 
 <form method="post" action="/test/variables" id="form">
     <div class="usuUno">
+        <h4>Usuario Uno</h4>
+        <div id="usuUnoDiv">
+            <div>
     <select name="generoUno" id="generoUno">
         <option value="Adventure">Adventure</option>
         <option value="Animation">Animation</option>
@@ -28,6 +31,9 @@
         <option value="Western">Western</option>
     </select>
         <button type="button" onclick="agregarParametroUnuarioUno('genero')">save</button>
+            </div>
+
+           <div>
         <input type="text" name="directorUno" list="directorsUno" id="directorUno" placeholder="director">
     <datalist id="directorsUno">
 
@@ -37,22 +43,29 @@
 
     </datalist>
         <button type="button" onclick="agregarParametroUnuarioUno('director')">save</button>
+           </div>
 
-    <select name="duracionUno" id="duracionUno">
+<div>
+            <select name="duracionUno" id="duracionUno">
         <option value="30-70">30 a 70 min</option>
         <option value="70-90">70 a 90 min</option>
         <option value="90-120">90 a 120 min</option>
         <option value="120-200">120 a 200 min</option>
     </select>
         <button type="button" onclick="agregarParametroUnuarioUno('duracion')">save</button>
+</div>
+            <div>
     <select name="ratingUno" id="ratingUno">
         <option value="G">G - Apta para todo publico</option>
         <option value="PG">PG - No apta para menores de 10 años</option>
         <option value="PG-13">PG-13 - No apta para menores de 13 años</option>
         <option value="R">R - No apta para menores de 17 años</option>
-        <option value="NR">NR - Sin Calificar (muchas peliculas aun no han sido clasificadas)</option>
+        <option value="NR">NR - Sin Clasificar</option>
     </select>
         <button type="button" onclick="agregarParametroUnuarioUno('rating')">save</button>
+            </div>
+
+            <div>
     <select name="anoUno" id="anoUno">
         <option value="1940-1960">40'-60'</option>
         <option value="1961-1980">61'-80'</option>
@@ -62,10 +75,45 @@
         <option value="2011-2017">2011-2017</option>
     </select>
         <button type="button" onclick="agregarParametroUnuarioUno('ano')">save</button>
+            </div>
+
+        </div>
+
     </div>
+<br>
+    <div id="seleccionadosUno">
+        <div id="seleccionadosUnoDiv">
+            <div id="seleccionadosUnoGenero">
+                <p style="color: red">Genero:</p>
+            </div>
+
+            <div id="seleccionadosUnoDirector">
+                <p style="color: red">Director:</p>
+            </div>
+
+            <div id="seleccionadosUnoDuracion">
+                <p style="color: red">Duracion:</p>
+            </div>
+
+            <div id="seleccionadosUnoRating">
+                <p style="color: red">Rating:</p>
+            </div>
+
+            <div id="seleccionadosUnoAno">
+                <p style="color: red">Año:</p>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
 
 
     <div class="usoDos">
+        <h4>Usuario Dos</h4>
+        <div id="usoDosDiv">
+            <div>
         <select name="generoDos" id="generoDos">
             <option value="Adventure">Adventure</option>
             <option value="Animation">Animation</option>
@@ -91,6 +139,9 @@
             <option value="Western">Western</option>
         </select>
              <button type="button" onclick="agregarParametroUnuarioDos('genero')">save</button>
+            </div>
+
+            <div>
         <input type="text" name="directorDos" list="directorsDos" id="directorDos" placeholder="director">
         <datalist id="directorsDos">
             {{#each name}}
@@ -99,6 +150,9 @@
 
         </datalist>
              <button type="button" onclick="agregarParametroUnuarioDos('director')">save</button>
+            </div>
+
+            <div>
 
         <select name="duracionDos" id="duracionDos">
             <option value="30-70">30 a 70 min</option>
@@ -107,14 +161,22 @@
             <option value="120-200">120 a 200 min</option>
         </select>
                <button type="button" onclick="agregarParametroUnuarioDos('duracion')">save</button>
+
+            </div>
+
+            <div>
         <select name="ratingDos" id="ratingDos">
             <option value="G">G - Apta para todo publico</option>
             <option value="PG">PG - No apta para menores de 10 años</option>
             <option value="PG-13">PG-13 - No apta para menores de 13 años</option>
             <option value="R">R - No apta para menores de 17 años</option>
-            <option value="NR">NR - Sin Calificar (muchas peliculas aun no han sido clasificadas)</option>
+            <option value="NR">NR - Sin Clasificar</option>
         </select>
                <button type="button" onclick="agregarParametroUnuarioDos('rating')">save</button>
+
+            </div>
+
+            <div>
         <select name="anoDos" id="anoDos">
             <option value="1940-1960">40'-60'</option>
             <option value="1961-1980">61'-80'</option>
@@ -124,64 +186,44 @@
             <option value="2011-2017">2011-2017</option>
         </select>
                <button type="button" onclick="agregarParametroUnuarioDos('ano')">save</button>
+            </div>
+        </div>
     </div>
+
+    <br>
+    <div id="seleccionadosDos">
+
+        <div id="seleccionadosDosDiv">
+
+            <div id="seleccionadosDosGenero">
+                <p style="color: red">Genero:</p>
+            </div>
+
+            <div id="seleccionadosDosDirector">
+                <p style="color: red">Director:</p>
+            </div>
+
+            <div id="seleccionadosDosDuracion">
+                <p style="color: red">Duracion:</p>
+            </div>
+
+            <div id="seleccionadosDosRating">
+                <p style="color: red">Rating:</p>
+            </div>
+
+            <div id="seleccionadosDosAno">
+                <p style="color: red">Año:</p>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
     <button type="submit">Enviar</button>
 </form>
 
-<div id="seleccionadosUno">
-<h4>Usuario Uno</h4>
-    <div id="seleccionadosUnoDiv">
-    <div id="seleccionadosUnoGenero">
-        <p style="color: red">Genero:</p>
-    </div>
 
-    <div id="seleccionadosUnoDirector">
-        <p style="color: red">Director:</p>
-    </div>
 
-    <div id="seleccionadosUnoDuracion">
-        <p style="color: red">Duracion:</p>
-    </div>
-
-    <div id="seleccionadosUnoRating">
-        <p style="color: red">Rating:</p>
-    </div>
-
-    <div id="seleccionadosUnoAno">
-        <p style="color: red">Año:</p>
-    </div>
-    </div>
-
-</div>
-
-<br>
-
-<div id="seleccionadosDos">
-    <h4>Usuario Dos</h4>
-    <div id="seleccionadosDosDiv">
-
-    <div id="seleccionadosDosGenero">
-        <p style="color: red">Genero:</p>
-    </div>
-
-    <div id="seleccionadosDosDirector">
-        <p style="color: red">Director:</p>
-    </div>
-
-    <div id="seleccionadosDosDuracion">
-        <p style="color: red">Duracion:</p>
-    </div>
-
-    <div id="seleccionadosDosRating">
-        <p style="color: red">Rating:</p>
-    </div>
-
-    <div id="seleccionadosDosAno">
-        <p style="color: red">Año:</p>
-    </div>
-    </div>
-
-</div>
 <br>
 <div id="recomendados">
 

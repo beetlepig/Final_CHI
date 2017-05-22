@@ -264,13 +264,15 @@ form.submit(function (event) {
         console.log(status);
         if (status === 'success') {
             console.log(data);
+            let divi  = $('#recomendados');
+            divi.empty();
             $.each(data, function(index, value) {
-                let divi  = $('#recomendados');
+
                 let carti = $('<div>').addClass("card");
                 let titulo= $("<h4>"+value.title+"</h4>");
                 carti.append(titulo);
 
-                let imagen  = $("<div>", {"style": "background: url("+value.poster_400x570+") no-repeat center / cover"}).addClass("img");
+                let imagen  = $("<div>", {"style": "background: url("+value.poster_400x570+") no-repeat center / contain"}).addClass("img");
                 carti.append(imagen);
                 $.each(value.genres, function (indexdos, valuedos) {
                    let  generin= $("<h5>"+valuedos.title+"</h5>");

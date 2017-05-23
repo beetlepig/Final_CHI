@@ -290,9 +290,20 @@ form.submit(function (event) {
 
                 let directorDivin= $("<div class='generoDiv'>");
                 directorDivin.append($("<h6 class='categoriaH'>"+"Director"+"</h6>"));
-                let director= $("<h5>"+value.directors[0].name+"</h5>");
+                let director;
+                try {
+                    director = $("<h5>" + value.directors[0].name + "</h5>");
+                } catch (error){
+                    director = $("<h5>"+"No disponible"+"</h5>");
+                }
                 directorDivin.append(director);
                 carti.append(directorDivin);
+
+                let duracionDivin= $("<div class='generoDiv'>");
+                duracionDivin.append($("<h6 class='categoriaH'>"+"Duración"+"</h6>"));
+                let duracion= $("<h5>"+((value.duration)/60)+" Minutos"+"</h5>");
+                duracionDivin.append(duracion);
+                carti.append(duracionDivin);
 
 
                 let descri=  $("<p >"+value.overview+"</p>").addClass("descripcionPelicula");

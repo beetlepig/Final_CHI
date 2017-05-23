@@ -258,6 +258,7 @@ function agregarParametroUnuarioDos(name) {
 
 
 form.submit(function (event) {
+    console.log("enviar");
     event.preventDefault();
 
     enviarDatos().always(function (data,status) {
@@ -267,20 +268,43 @@ form.submit(function (event) {
             let divi  = $('#recomendados');
             divi.empty();
             $.each(data, function(index, value) {
-
                 let carti = $('<div>').addClass("card");
                 let titulo= $("<h4>"+value.title+"</h4>");
                 carti.append(titulo);
 
                 let imagen  = $("<div>", {"style": "background: url("+value.poster_400x570+") no-repeat center / cover"}).addClass("img");
                 carti.append(imagen);
+                let generinDiv= $("<div class='generoDiv'>");
+                generinDiv.append($("<h6 class='categoriaH'>"+"Genero(s)"+"</h6>"));
                 $.each(value.genres, function (indexdos, valuedos) {
                    let  generin= $("<h5>"+valuedos.title+"</h5>");
-                   carti.append(generin);
+                   generinDiv.append(generin);
                 });
-                let descri=  $("<p >"+value.overview+"</p>");
+                carti.append(generinDiv);
+
+                let anoDivin= $("<div class='generoDiv'>");
+                anoDivin.append($("<h6 class='categoriaH'>"+"Año"+"</h6>"));
+                let ano= $("<h5>"+value.release_year+"</h5>");
+                anoDivin.append(ano);
+                carti.append(anoDivin);
+                let descri=  $("<p >"+value.overview+"</p>").addClass("descripcionPelicula");
                 carti.append(descri);
+                let descriLink= $("<a id='verMas'>"+"Ver descripción"+"</a>");
+                carti.append(descriLink);
                 divi.append(carti);
+
+
+
+                    $(descriLink).click(()=>{
+                        if($(descri).is(":visible")){
+                            $(descri).hide(600);
+                            $(descriLink).text("Ver descripción")
+                        } else {
+                            $(descri).show(900);
+                            $(descriLink).text("Ocultar descripción")
+                        }
+                    });
+
             });
 
 
@@ -291,6 +315,10 @@ form.submit(function (event) {
     });
 
 });
+
+
+
+
 
 function enviarDatos() {
     let users={usuarioUno: usuarioUno, usuarioDos: usuarioDos};

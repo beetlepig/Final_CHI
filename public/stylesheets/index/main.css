@@ -25,7 +25,7 @@ body{
     flex: none;
     width: 15vw;
     min-width: 200px;
-
+    padding-bottom: 5vh;
     box-shadow: 0 0 2px rgba(0,0,0,0.6);
     margin-left: 0.4%;
     margin-right: 0.4%;
@@ -47,6 +47,7 @@ body{
 .card a {
     margin: 5%;
     font-size: 0.6vw;
+    cursor: pointer;
 }
 
 .card p {
@@ -56,6 +57,7 @@ body{
 }
 .generoDiv{
     border-bottom: 1px solid #808080;
+    margin-bottom: 5%;
 }
 .categoriaH{
     margin: 5%;

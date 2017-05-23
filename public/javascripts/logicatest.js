@@ -287,6 +287,14 @@ form.submit(function (event) {
                 let ano= $("<h5>"+value.release_year+"</h5>");
                 anoDivin.append(ano);
                 carti.append(anoDivin);
+
+                let directorDivin= $("<div class='generoDiv'>");
+                directorDivin.append($("<h6 class='categoriaH'>"+"Director"+"</h6>"));
+                let director= $("<h5>"+value.directors[0].name+"</h5>");
+                directorDivin.append(director);
+                carti.append(directorDivin);
+
+
                 let descri=  $("<p >"+value.overview+"</p>").addClass("descripcionPelicula");
                 carti.append(descri);
                 let descriLink= $("<a id='verMas'>"+"Ver descripción"+"</a>");

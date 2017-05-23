@@ -1,12 +1,55 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/stryleDos.css">
 <link rel='stylesheet' href='/stylesheets/index/main.css' />
+
+<div class="header">
+    <div class="menu logo">
+        <a href="browserDos.html">
+            <img src="/Imagenes/logo.png" alt="">
+        </a>
+    </div>
+    <div class="menu left">
+        <div class="aline dropdown">
+            <button class="dropbtn" id="dropbtn" onclick="myFunction()">
+                <ul>
+                    <li><img src="/Imagenes/Isabella%20(2).jpg" alt=""></li>
+                    <li>Isabella</li>
+                    <li><img id="peque" src="/Imagenes/flecha.png" alt=""></li>
+                </ul>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="con_quien.html">
+                    <div class="direction este">
+                        <img src="/Imagenes/Grupal.jpg" alt="">Grupal
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="direction">
+                        <img src="/Imagenes/Jaime.jpg" alt="">Jaime
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="direction">
+                        <img src="/Imagenes/Carlos.jpg" alt="">Carlos
+                    </div>
+                </a>
+                <div class="direction este">
+                    <a href="#">Administrar perfiles</a>
+                </div>
+                <div class="direction"><a href="">Tu cuenta</a></div>
+                <div class="direction"><a href="">Centro de ayúda</a></div>
+                <div class="direction"><a href="">Cerrar sesión de Netflix</a></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <form method="post" action="/test/variables" id="form">
     <div class="usuUno">
-        <h4>Usuario Uno</h4>
+        <h4 class="usoText">Usuario Uno</h4>
         <div id="usuUnoDiv">
             <div>
-    <select name="generoUno" id="generoUno">
+    <select name="generoUno" id="generoUno" class="inputDatos">
         <option value="Adventure">Adventure</option>
         <option value="Animation">Animation</option>
         <option value="Biography">Biography</option>
@@ -30,11 +73,11 @@
         <option value="War">War</option>
         <option value="Western">Western</option>
     </select>
-        <button type="button" onclick="agregarParametroUnuarioUno('genero')">save</button>
+        <button type="button" class="saveButton" onclick="agregarParametroUnuarioUno('genero')">save</button>
             </div>
 
            <div>
-        <input type="text" name="directorUno" list="directorsUno" id="directorUno" placeholder="director">
+        <input type="text" name="directorUno" list="directorsUno" id="directorUno" class="inputDatos" placeholder="Director">
     <datalist id="directorsUno">
 
     {{#each name}}
@@ -42,31 +85,31 @@
     {{/each}}
 
     </datalist>
-        <button type="button" onclick="agregarParametroUnuarioUno('director')">save</button>
+        <button type="button" class="saveButton" onclick="agregarParametroUnuarioUno('director')">save</button>
            </div>
 
 <div>
-            <select name="duracionUno" id="duracionUno">
+            <select name="duracionUno" id="duracionUno" class="inputDatos">
         <option value="30-70">30 a 70 min</option>
         <option value="70-90">70 a 90 min</option>
         <option value="90-120">90 a 120 min</option>
         <option value="120-200">120 a 200 min</option>
     </select>
-        <button type="button" onclick="agregarParametroUnuarioUno('duracion')">save</button>
+        <button type="button" class="saveButton" onclick="agregarParametroUnuarioUno('duracion')">save</button>
 </div>
             <div>
-    <select name="ratingUno" id="ratingUno">
+    <select name="ratingUno" id="ratingUno" class="inputDatos">
         <option value="G">G - Apta para todo publico</option>
         <option value="PG">PG - No apta para menores de 10 años</option>
         <option value="PG-13">PG-13 - No apta para menores de 13 años</option>
         <option value="R">R - No apta para menores de 17 años</option>
         <option value="NR">NR - Sin Clasificar</option>
     </select>
-        <button type="button" onclick="agregarParametroUnuarioUno('rating')">save</button>
+        <button type="button" class="saveButton" onclick="agregarParametroUnuarioUno('rating')">save</button>
             </div>
 
             <div>
-    <select name="anoUno" id="anoUno">
+    <select name="anoUno" id="anoUno" class="inputDatos">
         <option value="1940-1960">40'-60'</option>
         <option value="1961-1980">61'-80'</option>
         <option value="1981-2000">81'-00'</option>
@@ -74,7 +117,7 @@
         <option value="2006-2010">2006-2010</option>
         <option value="2011-2017">2011-2017</option>
     </select>
-        <button type="button" onclick="agregarParametroUnuarioUno('ano')">save</button>
+        <button type="button" class="saveButton" onclick="agregarParametroUnuarioUno('ano')">save</button>
             </div>
 
         </div>
@@ -84,23 +127,23 @@
     <div id="seleccionadosUno">
         <div id="seleccionadosUnoDiv">
             <div id="seleccionadosUnoGenero">
-                <p style="color: red">Genero:</p>
+                <p class="tituloCategoria">Genero:</p>
             </div>
 
             <div id="seleccionadosUnoDirector">
-                <p style="color: red">Director:</p>
+                <p class="tituloCategoria">Director:</p>
             </div>
 
             <div id="seleccionadosUnoDuracion">
-                <p style="color: red">Duracion:</p>
+                <p class="tituloCategoria">Duracion:</p>
             </div>
 
             <div id="seleccionadosUnoRating">
-                <p style="color: red">Rating:</p>
+                <p class="tituloCategoria">Rating:</p>
             </div>
 
             <div id="seleccionadosUnoAno">
-                <p style="color: red">Año:</p>
+                <p class="tituloCategoria">Año:</p>
             </div>
         </div>
 
@@ -111,10 +154,10 @@
 
 
     <div class="usoDos">
-        <h4>Usuario Dos</h4>
+        <h4 class="usoText">Usuario Dos</h4>
         <div id="usoDosDiv">
             <div>
-        <select name="generoDos" id="generoDos">
+        <select name="generoDos" id="generoDos" class="inputDatos">
             <option value="Adventure">Adventure</option>
             <option value="Animation">Animation</option>
             <option value="Biography">Biography</option>
@@ -138,46 +181,46 @@
             <option value="War">War</option>
             <option value="Western">Western</option>
         </select>
-             <button type="button" onclick="agregarParametroUnuarioDos('genero')">save</button>
+             <button type="button" class="saveButton" onclick="agregarParametroUnuarioDos('genero')">save</button>
             </div>
 
             <div>
-        <input type="text" name="directorDos" list="directorsDos" id="directorDos" placeholder="director">
+        <input type="text" name="directorDos" list="directorsDos" id="directorDos" placeholder="director" class="inputDatos">
         <datalist id="directorsDos">
             {{#each name}}
                 <option value="{{this}}">{{this}}</option>
             {{/each}}
 
         </datalist>
-             <button type="button" onclick="agregarParametroUnuarioDos('director')">save</button>
+             <button type="button" class="saveButton" onclick="agregarParametroUnuarioDos('director')">save</button>
             </div>
 
             <div>
 
-        <select name="duracionDos" id="duracionDos">
+        <select name="duracionDos" id="duracionDos" class="inputDatos">
             <option value="30-70">30 a 70 min</option>
             <option value="70-90">70 a 90 min</option>
             <option value="90-120">90 a 120 min</option>
             <option value="120-200">120 a 200 min</option>
         </select>
-               <button type="button" onclick="agregarParametroUnuarioDos('duracion')">save</button>
+               <button type="button" class="saveButton" onclick="agregarParametroUnuarioDos('duracion')">save</button>
 
             </div>
 
             <div>
-        <select name="ratingDos" id="ratingDos">
+        <select name="ratingDos" id="ratingDos" class="inputDatos">
             <option value="G">G - Apta para todo publico</option>
             <option value="PG">PG - No apta para menores de 10 años</option>
             <option value="PG-13">PG-13 - No apta para menores de 13 años</option>
             <option value="R">R - No apta para menores de 17 años</option>
             <option value="NR">NR - Sin Clasificar</option>
         </select>
-               <button type="button" onclick="agregarParametroUnuarioDos('rating')">save</button>
+               <button type="button" class="saveButton" onclick="agregarParametroUnuarioDos('rating')">save</button>
 
             </div>
 
             <div>
-        <select name="anoDos" id="anoDos">
+        <select name="anoDos" id="anoDos" class="inputDatos">
             <option value="1940-1960">40'-60'</option>
             <option value="1961-1980">61'-80'</option>
             <option value="1981-2000">81'-00'</option>
@@ -185,7 +228,7 @@
             <option value="2006-2010">2006-2010</option>
             <option value="2011-2017">2011-2017</option>
         </select>
-               <button type="button" onclick="agregarParametroUnuarioDos('ano')">save</button>
+               <button type="button" class="saveButton" onclick="agregarParametroUnuarioDos('ano')">save</button>
             </div>
         </div>
     </div>
@@ -196,30 +239,30 @@
         <div id="seleccionadosDosDiv">
 
             <div id="seleccionadosDosGenero">
-                <p style="color: red">Genero:</p>
+                <p class="tituloCategoria">Genero:</p>
             </div>
 
             <div id="seleccionadosDosDirector">
-                <p style="color: red">Director:</p>
+                <p class="tituloCategoria">Director:</p>
             </div>
 
             <div id="seleccionadosDosDuracion">
-                <p style="color: red">Duracion:</p>
+                <p class="tituloCategoria">Duracion:</p>
             </div>
 
             <div id="seleccionadosDosRating">
-                <p style="color: red">Rating:</p>
+                <p class="tituloCategoria">Rating:</p>
             </div>
 
             <div id="seleccionadosDosAno">
-                <p style="color: red">Año:</p>
+                <p class="tituloCategoria">Año:</p>
             </div>
         </div>
 
     </div>
     <br>
 
-    <button type="submit">Enviar</button>
+    <button type="submit" class="saveButton" id="botonsonEnviar">Enviar</button>
 </form>
 
 
@@ -238,4 +281,22 @@
 -->
 
 </div>
+<script type="text/javascript">
+
+    let fun = 1;
+    document.getElementById("myDropdown").style.display = 'none';
+    function myFunction() {
+
+        if(fun === 0){
+            document.getElementById("myDropdown").style.display = 'none';
+            fun+=1;
+        }else{
+            document.getElementById('myDropdown').style.display = 'block';
+
+            fun-=1;
+        }
+        // document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+</script>
 <script type="application/javascript" src="/javascripts/logicatest.js"></script>

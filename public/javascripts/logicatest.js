@@ -272,13 +272,13 @@ form.submit(function (event) {
                 let titulo= $("<h4>"+value.title+"</h4>");
                 carti.append(titulo);
 
-                let imagen  = $("<div>", {"style": "background: url("+value.poster_400x570+") no-repeat center / contain"}).addClass("img");
+                let imagen  = $("<div>", {"style": "background: url("+value.poster_400x570+") no-repeat center / cover"}).addClass("img");
                 carti.append(imagen);
                 $.each(value.genres, function (indexdos, valuedos) {
                    let  generin= $("<h5>"+valuedos.title+"</h5>");
                    carti.append(generin);
                 });
-                let descri=  $("<p>"+value.overview+"</p>");
+                let descri=  $("<p >"+value.overview+"</p>");
                 carti.append(descri);
                 divi.append(carti);
             });

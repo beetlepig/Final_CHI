@@ -6,7 +6,8 @@
 
 function renderIndex(req, res, next) {
 
-    res.render('main', { title: 'Express' });
+   // res.render('main', { title: 'Express' });
+    res.redirect('/Maqueta');
 
 }
 
